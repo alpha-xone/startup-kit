@@ -1,0 +1,17 @@
+# Personal / non-skill files
+Box/
+Documents/
+Downloads/
+Pictures/
+
+# IDE / editor
+.idea/
+.vscode/
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
