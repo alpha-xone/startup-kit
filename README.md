@@ -28,16 +28,16 @@ Six skills that take you from idea to execution, built on systematic analysis of
                     └──────┬───────┘
                            │ "What pain should I work on?"
                            ▼
-                    ┌──────────────┐
-                    │  preflight   │  ← 2,500+ failures
-                    │ "how you die"│  ← 12-dimension stress test
-                    └──────┬───────┘
+                    ┌───────────────┐
+                    │  preflight    │  ← 2,500+ failures
+                    │ "how you die" │  ← 12-dimension stress test
+                    └──────┬────────┘
                            │ "Your biggest risks are X, Y, Z"
                            ▼
-                    ┌──────────────┐
-                    │  blueprint   │  ← 5,000+ successes
-                    │ "how you win"│  ← 5 modules, 8 founder moves
-                    └──────┬───────┘
+                    ┌───────────────┐
+                    │  blueprint    │  ← 5,000+ successes
+                    │ "how you win" │  ← 5 modules, 8 founder moves
+                    └──────┬────────┘
                            │ "Here's how survivors solved it"
                            ▼
                     ┌──────────────┐
@@ -50,11 +50,10 @@ Six skills that take you from idea to execution, built on systematic analysis of
                     └──────┬───────┘
                            │ "What metrics at my stage?"
                            ▼
-                    ┌──────────────┐
-                    │     gtm      │  ← Go to market
-                    │ "which channel│  ← backed by case data
-                    │  when"       │
-                    └──────────────┘
+                    ┌──────────────────────┐
+                    │     gtm              │  ← Go to market
+                    │ "which channel when" │  ← backed by case data
+                    └──────────────────────┘
 ```
 
 ### What's Inside
