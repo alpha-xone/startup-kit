@@ -41,7 +41,7 @@ Two complementary skills built on systematic analysis of **2,500+ failed startup
                            ▼
                   ┌─────────────────┐
                   │   forge (WIP)   │  ← Idea generation
-                  │  gtm (WIP)      │  ← Go-to-market playbook
+                  │  gtm            │  ← 10 GTM channels
                   │  pricing (WIP)  │  ← Pricing lab
                   │  compass (WIP)  │  ← KPI dashboard
                   │  raise (WIP)    │  ← Fundraising suite
@@ -54,6 +54,7 @@ Two complementary skills built on systematic analysis of **2,500+ failed startup
 |---|---|---|
 | [`preflight/`](preflight) | 12-dimension startup health check: demand, competition, unit economics, runway, team, etc. | 1,749 failed startups ($535B burned) · CB Insights (483 post-mortems) · LOOTR heatmap · Killed by Google (307 products) |
 | [`blueprint/`](blueprint) | Success playbook: 7 frameworks, 5 revenue stages, 6 business model playbooks, 8 founder moves | StarterStory (1,000+ interviews) · IndieHackers (5,000+ founders) · YC Startup School · MicroConf |
+| [`skills/gtm`](skills/gtm) | Go-to-market playbook: 10 channels, stage-matched recommendations, 20+ case studies | StarterStory + IndieHackers + Blueprint cross-referencing (v0.5 with data confidence tags) |
 
 ### How to Use
 
@@ -64,6 +65,7 @@ git clone https://github.com/alpha-xone/startup-kit
 # Or copy individual skills to your CodeWhale skills directory
 cp -r preflight ~/.codewhale/skills/
 cp -r blueprint ~/.codewhale/skills/
+cp -r skills/gtm ~/.codewhale/skills/
 ```
 
 Then ask your agent:
@@ -71,6 +73,7 @@ Then ask your agent:
 > **"Run Preflight on my idea: [description]"** → Diagnostic report
 > **"Run Blueprint on my startup: [description]"** → Success pattern analysis
 > **"Preflight flagged Platform Dependency as 🔴 — run Blueprint in countermove mode"** → Combined flow
+> **"Which GTM channel should I use at my stage?"** → Channel match analysis
 
 ## 🔬 Data Sources
 
@@ -95,6 +98,15 @@ Then ask your agent:
 | **MicroConf** | 100+ bootstrapped SaaS founder talks |
 | **First Round Review** | 100+ portfolio deep-dives |
 | **Lenny's Podcast** | 200+ product leadership interviews |
+
+### GTM's Cross-Referenced Data
+
+| Source | What It Provides |
+|---|---|
+| **StarterStory** | GTM stories with verified revenue for 7+ channels |
+| **IndieHackers** | Channel experiments and stage transition data |
+| **Blueprint skill** | Pre-analyzed success patterns cross-referenced back to channels |
+| **YC Startup School** | PLG frameworks and growth benchmarks |
 
 ## 🧬 Each Tool at a Glance
 
@@ -129,6 +141,17 @@ Module 5: Countermoves  → Preflight 12-dimension countermove mapping
 
 **3 operating modes**: Benchmark · Gap Analysis · Countermove
 
+### GTM: The 10 Delivery Channels
+
+```
+Tier 1 (Strong data):   Content/SEO · Build in Public · PLG · Community · Product Hunt · Productized Service · API/Integrations
+Tier 2 (Partial data):  Cold Email · Partnerships · Paid Acquisition
+
+3 operating modes: Channel Match · Diagnostic · Switch
+```
+
+**Data confidence tagging**: Every recommendation labeled ⭐⭐⭐⭐⭐ (strong), ⚠️ (partial), or ❌ (thin).
+
 ## 📁 Repository Structure
 
 ```
@@ -149,19 +172,26 @@ startup-kit/
 │   ├── assets/
 │   │   └── scorecard-template.md
 │   └── references/            ← 6 reference files (frameworks, patterns, moves, etc.)
-└── skills/                    ← Future companion skills (forge, gtm, pricing, compass, raise)
-    └── ...
+└── skills/
+    ├── gtm/                   ← 10 GTM channels, 20+ case studies (v0.5)
+    │   ├── SKILL.md
+    │   ├── SKILL.zh-CN.md
+    │   └── references/
+    ├── forge (WIP)
+    ├── pricing (WIP)
+    ├── compass (WIP)
+    └── raise (WIP)
 ```
 
 ## 🔮 Roadmap
 
-Skills planned for the `skills/` directory — each built on the same data-driven, case-anchored philosophy:
+Skills in the `skills/` directory — each built on the same data-driven, case-anchored philosophy:
 
-- **forge** — Idea generation engine (expand existing idea-forge)
-- **gtm** — Go-to-market playbook: channel selection, first 1,000 users, PLG vs sales-led, enterprise sales. Distilled from real GTM case studies and founder stories
-- **pricing** — Pricing lab: WTP research, pricing models, tiering strategy, value-based pricing. Rooted in real pricing experiments and outcomes
-- **compass** — KPI dashboard: stage-appropriate metrics, ceiling detection, health score. Cross-referenced with industry benchmarks
-- **raise** — Fundraising suite: pitch deck patterns, financial modeling, investor hunting. Drawn from YC demo day analysis and funded founder stories
+- **gtm** ✅ — Go-to-market playbook: 10 channels, stage-matched recommendations, 20+ case studies (v0.5). Data confidence tags on every recommendation.
+- **forge** (WIP) — Idea generation engine (expand existing idea-forge)
+- **pricing** (WIP) — Pricing lab: WTP research, pricing models, tiering strategy, value-based pricing. Rooted in real pricing experiments and outcomes
+- **compass** (WIP) — KPI dashboard: stage-appropriate metrics, ceiling detection, health score. Cross-referenced with industry benchmarks
+- **raise** (WIP) — Fundraising suite: pitch deck patterns, financial modeling, investor hunting. Drawn from YC demo day analysis and funded founder stories
 
 ## ⚠️ What This Is NOT
 
