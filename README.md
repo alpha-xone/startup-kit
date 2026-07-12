@@ -4,8 +4,6 @@
 
 > 🇨🇳 中文版见 [`README.zh-CN.md`](README.zh-CN.md)
 
-Two complementary skills built on systematic analysis of **2,500+ failed startup post-mortems** and **5,000+ successful founder stories**. Run them back-to-back: first diagnose what could kill you, then find the exact moves that winning founders used to survive and thrive.
-
 ## 📊 What Makes This Different
 
 **Every claim is backed by real cases and real numbers.** This is not generic startup advice — it's pattern extraction from thousands of actual outcomes:
@@ -18,9 +16,11 @@ Two complementary skills built on systematic analysis of **2,500+ failed startup
 | "Competition is tough" → obvious | Competition kills 53% — here's how ConvertKit beat Mailchimp |
 | "Choose a channel" → abstract | One channel, milk it dry: Carrd grew to $1.5M ARR on SEO alone |
 
-**Every future skill added to this repo will follow the same rule**: frameworks grounded in analyzed case data, not hunches or blog post wisdom.
+**Every skill in this repo follows the same rule**: frameworks grounded in analyzed case data, not hunches or blog post wisdom.
 
 ## 🗺️ The Toolkit
+
+Three skills that take you from idea to execution:
 
 ```
                   ┌─────────────────┐
@@ -40,13 +40,12 @@ Two complementary skills built on systematic analysis of **2,500+ failed startup
                            │ "Here's how survivors solved X, Y, Z"
                            ▼
                   ┌─────────────────┐
-                  │   forge (WIP)   │  ← Idea generation
-                  │  gtm            │  ← 10 GTM channels
-                  │  pricing (WIP)  │  ← Pricing lab
-                  │  compass (WIP)  │  ← KPI dashboard
-                  │  raise (WIP)    │  ← Fundraising suite
+                  │  gtm            │  ← 10 GTM channels, stage-matched
+                  │  "go to market" │  ← backed by real case data
                   └─────────────────┘
 ```
+
+Future skills (forge, pricing, compass, raise) planned — each data-driven from day 1.
 
 ### What's Inside
 
@@ -54,7 +53,7 @@ Two complementary skills built on systematic analysis of **2,500+ failed startup
 |---|---|---|
 | [`preflight/`](preflight) | 12-dimension startup health check: demand, competition, unit economics, runway, team, etc. | 1,749 failed startups ($535B burned) · CB Insights (483 post-mortems) · LOOTR heatmap · Killed by Google (307 products) |
 | [`blueprint/`](blueprint) | Success playbook: 7 frameworks, 5 revenue stages, 6 business model playbooks, 8 founder moves | StarterStory (1,000+ interviews) · IndieHackers (5,000+ founders) · YC Startup School · MicroConf |
-| [`skills/gtm`](skills/gtm) | Go-to-market playbook: 10 channels, stage-matched recommendations, 20+ case studies | StarterStory + IndieHackers + Blueprint cross-referencing (v0.5 with data confidence tags) |
+| [`gtm/`](gtm) | Go-to-market playbook: 10 channels, stage-matched recommendations, 20+ case studies | StarterStory + IndieHackers + Blueprint cross-referencing (v0.5 with data confidence tags) |
 
 ### How to Use
 
@@ -65,7 +64,7 @@ git clone https://github.com/alpha-xone/startup-kit
 # Or copy individual skills to your CodeWhale skills directory
 cp -r preflight ~/.codewhale/skills/
 cp -r blueprint ~/.codewhale/skills/
-cp -r skills/gtm ~/.codewhale/skills/
+cp -r gtm ~/.codewhale/skills/
 ```
 
 Then ask your agent:
@@ -164,41 +163,38 @@ startup-kit/
 │   ├── README.md
 │   ├── assets/
 │   │   └── scorecard-template.md
-│   ├── references/            ← 9 reference files (industry profiles, methodology, etc.)
+│   ├── references/            ← 9 reference files
 │   └── scripts/               ← Python dashboard generator
 ├── blueprint/
 │   ├── SKILL.md               ← Success playbook (English)
 │   ├── SKILL.zh-CN.md         ← 中文版
 │   ├── assets/
 │   │   └── scorecard-template.md
-│   └── references/            ← 6 reference files (frameworks, patterns, moves, etc.)
-└── skills/
-    ├── gtm/                   ← 10 GTM channels, 20+ case studies (v0.5)
-    │   ├── SKILL.md
-    │   ├── SKILL.zh-CN.md
-    │   └── references/
-    ├── forge (WIP)
-    ├── pricing (WIP)
-    ├── compass (WIP)
-    └── raise (WIP)
+│   └── references/            ← 6 reference files
+└── gtm/
+    ├── SKILL.md               ← Go-to-market playbook (English)
+    ├── SKILL.zh-CN.md         ← 中文版
+    └── references/            ← 3 reference files (channel profiles, case library, data sources)
 ```
+
+All three skills at the same level. Future additions follow the same pattern.
 
 ## 🔮 Roadmap
 
-Skills in the `skills/` directory — each built on the same data-driven, case-anchored philosophy:
+Skills planned — each built on the same data-driven, case-anchored philosophy:
 
-- **gtm** ✅ — Go-to-market playbook: 10 channels, stage-matched recommendations, 20+ case studies (v0.5). Data confidence tags on every recommendation.
-- **forge** (WIP) — Idea generation engine (expand existing idea-forge)
-- **pricing** (WIP) — Pricing lab: WTP research, pricing models, tiering strategy, value-based pricing. Rooted in real pricing experiments and outcomes
-- **compass** (WIP) — KPI dashboard: stage-appropriate metrics, ceiling detection, health score. Cross-referenced with industry benchmarks
-- **raise** (WIP) — Fundraising suite: pitch deck patterns, financial modeling, investor hunting. Drawn from YC demo day analysis and funded founder stories
+- **gtm** ✅ — Go-to-market playbook: 10 channels, stage-matched recommendations, 20+ case studies (v0.5)
+- **forge** (WIP) — Idea generation engine
+- **pricing** (WIP) — Pricing lab: WTP research, pricing models, tiering, value-based pricing
+- **compass** (WIP) — KPI dashboard: stage-appropriate metrics, ceiling detection, health score
+- **raise** (WIP) — Fundraising suite: pitch deck patterns, financial modeling, investor mapping
 
 ## ⚠️ What This Is NOT
 
 - **Not a crystal ball** — it uses historical patterns to tell you probabilities, not futures
 - **Not a cheerleader** — preflight will tell you if the data looks bad; blueprint won't sugarcoat what you're missing
 - **Not VC-only** — patterns are tagged by founder type (bootstrapped vs VC, solo vs co-founder)
-- **Not survivorship bias unacknowledged** — both tools have explicit methodology limitations documented in their `references/data-sources.md`
+- **Not survivorship bias unacknowledged** — tools have explicit methodology limitations documented per skill in their `references/data-sources.md`
 - **Not the final word** — the decision is yours. These tools just ensure it's an evidence-backed one
 
 ---
