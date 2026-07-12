@@ -8,16 +8,16 @@ Two complementary skills built on systematic analysis of **2,500+ failed startup
 
 ```
                   ┌─────────────────┐
-                  │   preflight ·    │
-                  │   "how you die"  │  ← 2,500+ failures
-                  │  12-dimension    │
-                  │  stress test     │
+                  │  preflight ·    │
+                  │  "how you die"  │  ← 2,500+ failures
+                  │  12-dimension   │
+                  │  stress test    │
                   └────────┬────────┘
                            │ "Your biggest risks are X, Y, Z"
                            ▼
                   ┌─────────────────┐
                   │  blueprint ·    │
-                  │   "how you win"  │  ← 5,000+ successes
+                  │  "how you win"  │  ← 5,000+ successes
                   │  5 modules      │
                   │  8 founder moves│
                   └────────┬────────┘
