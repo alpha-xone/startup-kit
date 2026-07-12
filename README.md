@@ -1,108 +1,159 @@
-# Blueprint · Startup Success Playbook
+# Startup Kit · Diagnose · Prescribe · Execute
 
-> **How winners win. The success playbook to preflight's diagnostic.**
+> **A complete startup evaluation toolkit: preflight checks your odds, blueprint shows you how winners win.**
 
-A structured success-pattern extraction engine that distills winning moves from **5,000+ verified founder stories** (StarterStory + IndieHackers + YC + MicroConf). While preflight asks "how will you die?", Blueprint asks "**how do winners win?**"
+Two complementary skills built on systematic analysis of **2,500+ failed startup post-mortems** and **5,000+ successful founder stories**. Run them back-to-back: first diagnose what could kill you, then find the exact moves that winning founders used to survive and thrive.
 
-> 🇨🇳 中文版 SKILL 见 [`SKILL.zh-CN.md`](SKILL.zh-CN.md)
+## 🗺️ The Toolkit
 
-## 🔬 What This Does
+```
+                  ┌─────────────────┐
+                  │   preflight ·    │
+                  │   "怎么死"       │  ← 2,500+ failures
+                  │  12-dimension    │
+                  │  stress test     │
+                  └────────┬────────┘
+                           │ "Your biggest risks are X, Y, Z"
+                           ▼
+                  ┌─────────────────┐
+                  │  blueprint ·    │
+                  │   "怎么赢"       │  ← 5,000+ successes
+                  │  5 modules      │
+                  │  8 founder moves│
+                  └────────┬────────┘
+                           │ "Here's how survivors solved X, Y, Z"
+                           ▼
+                  ┌─────────────────┐
+                  │   forge (WIP)   │  ← Idea generation
+                  │  gtm (WIP)      │  ← Go-to-market playbook
+                  │  pricing (WIP)  │  ← Pricing lab
+                  │  compass (WIP)  │  ← KPI dashboard
+                  │  raise (WIP)    │  ← Fundraising suite
+                  └─────────────────┘
+```
 
-Blueprint is the companion to [preflight](https://github.com/alpha-xone/preflight). Preflight diagnoses — Blueprint prescribes. It catalogs the specific, repeatable patterns that founders who broke $10K → $100K → $1M+ MRR actually ran — not generic advice, but **evidence-backed plays** with real names, real companies, and real outcomes.
+### What's Inside
 
-**Not "think positive" — think *pattern-match.** * Every recommendation comes with data backing, execution checklists, and contra-indications.
-
-## 📊 Data Powering This Skill
-
-Blueprint is built on systematic cross-referencing of **5,000+ successful founder stories** across four primary sources:
-
-| Source | Scale | What It Provides |
+| Directory | Description | Data Backing |
 |---|---|---|
-| **StarterStory** | 1,000+ founder interviews | Verified revenue data. Every figure source-checked. |
-| **IndieHackers** | 5,000+ revenue-transparent founders | Longitudinal stage-transition data. Best HOW source. |
-| **YC Startup School + Library** | 4,000+ YC companies | Frameworks (Graham, Thiel, Rahleff). Venture-scale patterns. |
-| **MicroConf** | 100+ bootstrapped SaaS founder talks | Bootstrapped-specific patterns. The Stair-Step Approach. |
-| **First Round Review** | 100+ portfolio deep-dives | Scaling-stage hiring, pricing, and team-building data. |
-| **Lenny's Podcast** | 200+ product leadership interviews | PLG and growth tactics. Deep tactical conversations. |
+| [`preflight/`](preflight) | 12-dimension startup health check: demand, competition, unit economics, runway, team, etc. | 1,749 failed startups ($535B burned) · CB Insights (483 post-mortems) · LOOTR heatmap · Killed by Google (307 products) |
+| [`blueprint/`](blueprint) | Success playbook: 7 frameworks, 5 revenue stages, 6 business model playbooks, 8 founder moves | StarterStory (1,000+ interviews) · IndieHackers (5,000+ founders) · YC Startup School · MicroConf |
 
-**Methodology**: A pattern is only included if it appears across ≥3 independent sources and ≥5 founder stories. Stage-specific and model-specific tagging prevents inappropriate recommendations.
-
-## 🧬 The Five Modules
-
-```
-Module 1: Frameworks  → 7 classic success frameworks (Helmer, Thiel, Graham, etc.)
-Module 2: Stages      → Revenue stage patterns ($0→$1K→$10K→$50K→$200K→$1M+)
-Module 3: Models      → Business model playbooks (SaaS, marketplace, e-com, service, content, hardware)
-Module 4: Moves       → Founder move library (8 repeatable, copyable plays)
-Module 5: Countermoves → Preflight 12-dimension countermove mapping
-```
-
-**Three operating modes**:
-- **Benchmark Mode**: "I'm at $5K MRR building SaaS — what did others at this stage do to reach $50K?"
-- **Gap Analysis**: Runs all 5 modules against your project, flags what's missing, prioritizes gaps
-- **Countermove Mode**: "Preflight flagged Platform Dependency as 🔴 — how did successful founders solve this?"
-
-## 🎯 The 8 Founder Moves
-
-| # | Move | Best For | Data Backing |
-|---|---|---|---|
-| 1 | **Charge from Day 1** | Validation | 80% of $100K+/yr StarterStory founders did it |
-| 2 | **Build in Public** | All stages | 5-10x audience growth, 2-3x conversion |
-| 3 | **Micro-Niche Domination** | PMF + Scaling | 2x win rate, 40% lower churn |
-| 4 | **Stair-Step Approach** | Bootstrapped | 70% higher survival (TinySeed) |
-| 5 | **PLG Flywheel** | Scaling+ | 30-50% lower CAC vs sales-led |
-| 6 | **Do Unscalable Things** | Validation | Airbnb, Stripe, Zapier — all did it |
-| 7 | **Empty-Room Demo** | Idea → Validation | 60% of features added AFTER first paying users |
-| 8 | **Pain-Ladder Pricing** | PMF + Scaling | $1M+ founders charge value, not cost |
-
-## 🚀 Quick Start
-
-### Install as a DAG Skill
+### How to Use
 
 ```bash
-# Copy to your skills directory
+# Clone the entire kit
+git clone https://github.com/alpha-xone/startup-kit
+
+# Or copy individual skills to your CodeWhale skills directory
+cp -r preflight ~/.codewhale/skills/
 cp -r blueprint ~/.codewhale/skills/
 ```
 
-Then just tell your agent:
-> "Run Blueprint on my startup: [description]"
+Then ask your agent:
 
-### Trigger Phrases
+> **"Run Preflight on my idea: [description]"** → Diagnostic report
+> **"Run Blueprint on my startup: [description]"** → Success pattern analysis
+> **"Preflight flagged Platform Dependency as 🔴 — run Blueprint in countermove mode"** → Combined flow
 
-- How do successful startups do X?
-- What worked for others at my stage?
-- Founder playbook for [Y]
-- Revenue stage benchmark
-- Success pattern analysis
-- Compare my startup to successful ones
-- Preflight said [X] is 🔴 — how do I fix it?
+## 🔬 Data Sources
 
-## 📁 Structure
+### Preflight's Cemetery Data
+
+| Source | Scale |
+|---|---|
+| **Loot Drop** | 1,749 failed startups, $535B burned |
+| **CB Insights** | 483 post-mortems |
+| **Failory** | 200+ analyses + Google/Amazon cemeteries |
+| **LOOTR Heatmap** | 16 industries × 12 failure causes |
+| **Killed by Google** | 307 discontinued products |
+| **Unbiased Ventures** | 2024-2025 major failures |
+
+### Blueprint's Success Data
+
+| Source | Scale |
+|---|---|
+| **StarterStory** | 1,000+ founder interviews (verified revenue) |
+| **IndieHackers** | 5,000+ revenue-transparent founders |
+| **YC Startup School + Library** | 4,000+ YC companies |
+| **MicroConf** | 100+ bootstrapped SaaS founder talks |
+| **First Round Review** | 100+ portfolio deep-dives |
+| **Lenny's Podcast** | 200+ product leadership interviews |
+
+## 🧬 Each Tool at a Glance
+
+### Preflight: The 12-Dimension Stress Test
+
+| # | Dimension | Key Question |
+|---|---|---|
+| 1 | Demand Reality | Who's paying? How do they solve it now? |
+| 2 | Competitive Defensibility | Can a big player replicate you in one sprint? |
+| 3 | Unit Economics | LTV > 3×CAC? Gets better or worse with scale? |
+| 4 | Runway & Cash | Kill criterion set? Default alive or dead? |
+| 5 | Team Fit | Does anyone truly understand the user's domain? |
+| 6 | Business Model Clarity | Why pay instead of free alternatives? |
+| 7 | Product/Tech Feasibility | Demo-to-production gap? |
+| 8 | Regulatory & Legal | Need a license? |
+| 9 | Timing | Too early or too late? |
+| 10 | Growth & Distribution | Where do first 1,000 users come from? |
+| 11 | Platform Dependency | If the platform changes rules — can you survive? |
+| 12 | Structural Resilience | Would anyone still need this in a recession? |
+
+**Pipeline**: G0 (Discover) → G1 (Validate) → G2 (Stress-test) → G3 (Self-check) → G4 (Decide)
+
+### Blueprint: The 5 Success Modules
 
 ```
-blueprint/
-├── SKILL.md                          ← Main skill: 5 modules + 3 operating modes (English)
-├── SKILL.zh-CN.md                    ← Chinese version · 中文版
-├── README.md
-├── references/
-│   ├── success-frameworks.md         ← 7 classic frameworks (Helmer, Thiel, Graham, Hormozi, etc.)
-│   ├── stage-patterns.md             ← Revenue stage patterns with case data
-│   ├── model-patterns.md             ← Business model playbooks (6 models)
-│   ├── founder-moves.md              ← 8 founder moves with execution checklists
-│   ├── preflight-countermoves.md     ← 12-dimension Preflight countermove mapping
-│   ├── data-sources.md               ← Data sources, methodology & limitations
-│   └── web-design-guidelines.md      ← HTML output design system
-└── assets/
-    └── scorecard-template.md         ← Standard scorecard template (supports Loop review)
+Module 1: Frameworks   → 7 classic frameworks (Helmer, Thiel, Graham, Hormozi, etc.)
+Module 2: Stages       → Revenue stage patterns ($0→$1K→$10K→$50K→$200K→$1M+)
+Module 3: Models       → Business model playbooks (SaaS, marketplace, e-com, service, content, hardware)
+Module 4: Moves        → Founder move library (8 repeatable, copyable plays)
+Module 5: Countermoves  → Preflight 12-dimension countermove mapping
 ```
+
+**3 operating modes**: Benchmark · Gap Analysis · Countermove
+
+## 📁 Repository Structure
+
+```
+startup-kit/
+├── README.md                  ← You are here
+├── preflight/
+│   ├── SKILL.md               ← Evaluation pipeline + 12 dimensions (English)
+│   ├── SKILL.zh-CN.md         ← 中文版
+│   ├── README.md
+│   ├── assets/
+│   │   └── scorecard-template.md
+│   ├── references/            ← 9 reference files (industry profiles, methodology, etc.)
+│   └── scripts/               ← Python dashboard generator
+├── blueprint/
+│   ├── SKILL.md               ← Success playbook (English)
+│   ├── SKILL.zh-CN.md         ← 中文版
+│   ├── assets/
+│   │   └── scorecard-template.md
+│   └── references/            ← 6 reference files (frameworks, patterns, moves, etc.)
+└── skills/                    ← Future companion skills (forge, gtm, pricing, compass, raise)
+    └── ...
+```
+
+## 🔮 Roadmap
+
+Skills planned for the `skills/` directory:
+
+- **forge** — Idea generation engine (expand existing idea-forge)
+- **gtm** — Go-to-market playbook: channels, first 1,000 users, PLG, enterprise sales
+- **pricing** — Pricing lab: WTP research, models, tiering, value-based pricing
+- **compass** — KPI dashboard: stage-appropriate metrics, ceiling detection, health scan
+- **raise** — Fundraising suite: pitch deck, financial model, investor mapping
 
 ## ⚠️ What This Is NOT
 
-- Not a formula — every startup is different. The patterns show what's worked before, not a guaranteed path.
-- Not a substitute for preflight — run preflight first to find your risks, then blueprint to find your attack plan.
-- Not survivorship bias unacknowledged — we explicitly catalog methodology limitations in `references/data-sources.md` (survivor bias, self-reporting bias, publication bias, geography bias).
-- Not VC-only — patterns are tagged by founder type (bootstrapped vs VC, solo vs co-founder, technical vs non-technical).
+- **Not a crystal ball** — it uses historical patterns to tell you probabilities, not futures
+- **Not a cheerleader** — preflight will tell you if the data looks bad; blueprint won't sugarcoat what you're missing
+- **Not VC-only** — patterns are tagged by founder type (bootstrapped vs VC, solo vs co-founder)
+- **Not survivorship bias unacknowledged** — both tools have explicit methodology limitations documented in their `references/data-sources.md`
+- **Not the final word** — the decision is yours. These tools just ensure it's an evidence-backed one
 
 ---
 
-*Built by studying 5,000+ founders who made it — so you can see the patterns they didn't know they were leaving.*
+*Built by studying 2,500+ who failed and 5,000+ who succeeded — so you can spot the patterns before you commit.*
