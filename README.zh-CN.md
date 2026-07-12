@@ -2,7 +2,9 @@
 
 > **完整的创业评估工具包：preflight 查你的生存几率，blueprint 告诉你赢家怎么赢。**
 
-两个互补技能，基于 **2,500+ 失败创业尸检报告** 和 **5,000+ 成功创始人故事** 的系统分析。配合使用：先诊断什么可能杀死你，再找到赢家用来生存和壮大的具体招式。
+> 🇬🇧 English version at [`README.md`](README.md)
+
+三个技能帮你从想法到执行，基于 **2,500+ 失败创业尸检报告** 和 **5,000+ 成功创始人故事** 的系统分析。
 
 ## 📊 有什么不同
 
@@ -16,34 +18,33 @@
 | 「竞争很激烈」→ 废话 | 竞争杀死 53% — 以下是 ConvertKit 如何打败 Mailchimp 的 |
 | 「选个渠道」→ 抽象 | 一个渠道吃干榨净：Carrd 靠纯 SEO 做到 $1.5M ARR |
 
-**后续加入此 repo 的每个技能都将遵循同一规则**：框架必须扎根于经过分析的案例数据，而非直觉或博客智慧。
+**本 repo 中每个技能都遵循同一规则**：框架扎根于经过分析的案例数据，而非直觉或博客智慧。
 
 ## 🗺️ 工具链
 
 ```
-                  ┌───────────────┐
-                  │   preflight . │
-                  │   "怎么死"     │  ← 2,500+ 失败案例
-                  │   12 维诊断    │
-                  └────────┬──────┘
+                  ┌─────────────────┐
+                  │  preflight ·    │
+                  │   "怎么死"       │  ← 2,500+ 失败案例
+                  │  12 维诊断       │
+                  └────────┬────────┘
                            │ "你的最大风险是 X, Y, Z"
                            ▼
-                  ┌────────────────┐
-                  │  blueprint ·   │
-                  │   "怎么赢"      │  ← 5,000+ 成功案例
-                  │  5 大模块       │
-                  │  8 个创始人招式 │
-                  └────────┬───────┘
+                  ┌─────────────────┐
+                  │  blueprint ·    │
+                  │   "怎么赢"       │  ← 5,000+ 成功案例
+                  │  5 大模块        │
+                  │  8 个创始人招式  │
+                  └────────┬────────┘
                            │ "幸存者是这么解决 X, Y, Z 的"
                            ▼
                   ┌─────────────────┐
-                  │   forge (WIP)   │  ← 想法生成
-                  │  gtm (WIP)      │  ← 市场策略手册
-                  │  pricing (WIP)  │  ← 定价实验室
-                  │  compass (WIP)  │  ← 指标仪表盘
-                  │  raise (WIP)    │  ← 融资套件
+                  │  gtm            │  ← 10 个 GTM 渠道，阶段匹配
+                  │  "去市场"       │  ← 基于真实案例数据
                   └─────────────────┘
 ```
+
+后续技能（forge、pricing、compass、raise）规划中——同样数据驱动。
 
 ### 内容概览
 
@@ -51,6 +52,7 @@
 |---|---|---|
 | [`preflight/`](preflight) | 12 维创业健康检查：需求、竞争、单位经济、现金流、团队等 | 1,749 家失败初创（$535B 烧掉）· CB Insights（483 份尸检）· LOOTR 热力图 · Killed by Google（307 产品） |
 | [`blueprint/`](blueprint) | 成功手册：7 大框架、5 个收入阶段、6 种商业模式胜法、8 个创始人招式 | StarterStory（1,000+ 访谈）· IndieHackers（5,000+ 创始人）· YC Startup School · MicroConf |
+| [`gtm/`](gtm) | Go-to-market 策略手册：10 个渠道、阶段匹配推荐、20+ 案例研究 | StarterStory + IndieHackers + Blueprint 交叉引用（v0.5，数据可信度标签） |
 
 ### 使用方法
 
@@ -61,6 +63,7 @@ git clone https://github.com/alpha-xone/startup-kit
 # 或者将单个 skill 复制到你的 CodeWhale skills 目录
 cp -r preflight ~/.codewhale/skills/
 cp -r blueprint ~/.codewhale/skills/
+cp -r gtm ~/.codewhale/skills/
 ```
 
 然后告诉你的 agent：
@@ -68,6 +71,7 @@ cp -r blueprint ~/.codewhale/skills/
 > **"Run Preflight on my idea: [描述]"** → 诊断报告
 > **"Run Blueprint on my startup: [描述]"** → 成功模式分析
 > **"Preflight 标了我的平台依赖为 🔴 — 用 Blueprint 反击模式"** → 组合流程
+> **"Which GTM channel should I use at my stage?"** → 渠道匹配分析
 
 ## 🔬 数据来源
 
@@ -92,6 +96,15 @@ cp -r blueprint ~/.codewhale/skills/
 | **MicroConf** | 100+ 自举 SaaS 创始人演讲 |
 | **First Round Review** | 100+ 投资组合深度分析 |
 | **Lenny's Podcast** | 200+ 产品领导力访谈 |
+
+### GTM 交叉引用数据
+
+| 来源 | 提供内容 |
+|---|---|
+| **StarterStory** | 7+ 个渠道的 GTM 故事及已验证收入 |
+| **IndieHackers** | 渠道实验和阶段过渡数据 |
+| **Blueprint skill** | 预分析的成功模式，交叉映射回渠道 |
+| **YC Startup School** | PLG 框架和增长基准 |
 
 ## 🧬 各工具一览
 
@@ -126,6 +139,17 @@ cp -r blueprint ~/.codewhale/skills/
 
 **3 种运行模式**：对标 · 差距分析 · 反击
 
+### GTM：10 个分发渠道
+
+```
+第一梯队（数据充分）：内容/SEO · 公开构建 · PLG · 社区 · Product Hunt · 产品化服务 · API/集成
+第二梯队（部分数据）：冷邮件 · 合作联盟 · 付费投放
+
+3 种模式：渠道匹配 · 诊断 · 切换
+```
+
+**数据可信度标签**：每条建议标注 ⭐⭐⭐⭐⭐（强）/ ⚠️（部分）/ ❌（薄）。
+
 ## 📁 仓库结构
 
 ```
@@ -146,26 +170,30 @@ startup-kit/
 │   ├── assets/
 │   │   └── scorecard-template.md
 │   └── references/            ← 6 个参考文件
-└── skills/                    ← 未来配套技能 (forge, gtm, pricing, compass, raise)
-    └── ...
+└── gtm/
+    ├── SKILL.md               ← Go-to-market 策略手册 (英文)
+    ├── SKILL.zh-CN.md         ← 中文版
+    └── references/            ← 3 个参考文件（渠道分析、案例库、数据源）
 ```
+
+三个技能在同一层级。后续追加的技能将保持相同模式。
 
 ## 🔮 路线图
 
-计划添加进 `skills/` 目录的技能——同样基于数据驱动、案例为本的理念：
+规划中的技能——同样基于数据驱动、案例为本的理念：
 
-- **forge** — 想法生成引擎（完善现有 idea-forge）
-- **gtm** — Go-to-market 策略手册：渠道选择、首批 1000 用户、PLG vs 销售驱动、企业销售。从真实 GTM 案例和创始人故事中蒸馏
-- **pricing** — 定价实验室：WTP 调研、定价模型、分层策略、价值定价。扎根于真实定价实验和结果
-- **compass** — 指标仪表盘：各阶段 KPI、天花板识别、健康评分。交叉参照行业基准
-- **raise** — 融资套件：Pitch deck 模式、财务模型、投资人发掘。源自 YC Demo Day 分析和成功融资的创始人故事
+- **gtm** ✅ — Go-to-market 策略手册：10 个渠道、阶段匹配推荐、20+ 案例研究（v0.5）
+- **forge** (WIP) — 想法生成引擎
+- **pricing** (WIP) — 定价实验室：WTP 调研、定价模型、分层、价值定价
+- **compass** (WIP) — 指标仪表盘：各阶段 KPI、天花板识别、健康评分
+- **raise** (WIP) — 融资套件：Pitch deck 模式、财务模型、投资人 mapping
 
 ## ⚠️ 这不是什么
 
 - **不是水晶球** — 它用历史模式告诉你概率，不是未来
 - **不是啦啦队** — preflight 会在数据不好时说实话；blueprint 不会粉饰你的缺失
 - **不只是 VC 的** — 模式按创始人类型标记（自举 vs VC、独立 vs 联合创始人）
-- **不隐瞒幸存者偏差** — 两个工具都在 `references/data-sources.md` 中明确记录了方法论局限性
+- **不隐瞒幸存者偏差** — 每个技能在各自的 `references/data-sources.md` 中明确记录了方法论局限性
 - **不是最终结论** — 决策权在你。这些工具只是确保你基于证据做决定
 
 ---
