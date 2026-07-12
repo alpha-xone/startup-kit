@@ -2,6 +2,8 @@
 
 > **A complete startup evaluation toolkit: preflight checks your odds, blueprint shows you how winners win.**
 
+> 🇨🇳 中文版见 [`README.zh-CN.md`](README.zh-CN.md)
+
 Two complementary skills built on systematic analysis of **2,500+ failed startup post-mortems** and **5,000+ successful founder stories**. Run them back-to-back: first diagnose what could kill you, then find the exact moves that winning founders used to survive and thrive.
 
 ## 🗺️ The Toolkit
