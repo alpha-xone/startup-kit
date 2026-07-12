@@ -20,44 +20,53 @@ Six skills that take you from idea to execution, built on systematic analysis of
 
 **Every skill in this repo follows the same rule**: frameworks grounded in analyzed case data, not hunches or blog post wisdom.
 
-## 🗺️ The Toolkit
+## 🗺️ The Pipeline
 
 ```
-                  ┌─────────────────┐
-                  │  preflight ·    │
-                  │  "how you die"  │  ← 2,500+ failures
-                  │  12-dimension   │
-                  │  stress test    │
-                  └────────┬────────┘
+                    ┌──────────────┐
+                    │    forge     │  ← Find problems worth solving
+                    └──────┬───────┘
+                           │ "What pain should I work on?"
+                           ▼
+                    ┌──────────────┐
+                    │  preflight   │  ← 2,500+ failures
+                    │ "how you die"│  ← 12-dimension stress test
+                    └──────┬───────┘
                            │ "Your biggest risks are X, Y, Z"
                            ▼
-                  ┌─────────────────┐
-                  │  blueprint ·    │
-                  │  "how you win"  │  ← 5,000+ successes
-                  │  5 modules      │
-                  │  8 founder moves│
-                  └────────┬────────┘
-                           │ "Here's how survivors solved X, Y, Z"
+                    ┌──────────────┐
+                    │  blueprint   │  ← 5,000+ successes
+                    │ "how you win"│  ← 5 modules, 8 founder moves
+                    └──────┬───────┘
+                           │ "Here's how survivors solved it"
                            ▼
-                  ┌─────────────────┐
-                  │  forge ·         │  ← Idea generation
-                  │  pricing ·       │  ← Pricing lab
-                  │  compass ·       │  ← KPI dashboard
-                  │  gtm ·           │  ← Go-to-market
-                  └────────┬────────┘
-                           │ "Execute with data, not guesses"
+                    ┌──────────────┐
+                    │   pricing    │  ← Price what it's worth
+                    └──────┬───────┘
+                           │ "How much should I charge?"
+                           ▼
+                    ┌──────────────┐
+                    │   compass    │  ← Track what matters
+                    └──────┬───────┘
+                           │ "What metrics at my stage?"
+                           ▼
+                    ┌──────────────┐
+                    │     gtm      │  ← Go to market
+                    │ "which channel│  ← backed by case data
+                    │  when"       │
+                    └──────────────┘
 ```
 
 ### What's Inside
 
-| Directory | Description | Data Backing |
-|---|---|---|
-| [`preflight/`](preflight) | 12-dimension startup health check: demand, competition, unit economics, runway, team, etc. | 1,749 failed startups ($535B burned) · CB Insights (483 post-mortems) · LOOTR heatmap · Killed by Google (307 products) |
-| [`blueprint/`](blueprint) | Success playbook: 7 frameworks, 5 revenue stages, 6 business model playbooks, 8 founder moves | StarterStory (1,000+ interviews) · IndieHackers (5,000+ founders) · YC Startup School · MicroConf |
-| [`forge/`](forge) | Idea generation engine: pain mining, quick filtering, opportunity discovery | Preflight G0 methodology + 16-industry failure profiles |
-| [`pricing/`](pricing) | Pricing lab: value-based pricing, tier design, price raise audits, 12+ real cases | Hormozi Value Equation + StarterStory + IndieHackers pricing outcomes |
-| [`compass/`](compass) | KPI dashboard: stage-appropriate metrics ($0→$1M+), industry benchmarks, health thresholds | Blueprint revenue stage data + model-specific benchmarks |
-| [`gtm/`](gtm) | Go-to-market playbook: 10 channels, stage-matched recommendations, 20+ case studies | StarterStory + IndieHackers + Blueprint cross-referencing (v0.5 with data confidence tags) |
+| # | Directory | Description | Data Backing |
+|---|---|---|---|
+| 1 | [`forge/`](forge) | Idea generation: pain mining, quick filtering, opportunity discovery (v0.5) | Preflight G0 methodology + 16-industry failure profiles |
+| 2 | [`preflight/`](preflight) | 12-dimension startup health check: demand, competition, unit economics, runway, team, etc. | 1,749 failed startups ($535B burned) · CB Insights (483 post-mortems) · LOOTR heatmap · Killed by Google (307 products) |
+| 3 | [`blueprint/`](blueprint) | Success playbook: 7 frameworks, 5 revenue stages, 6 business model playbooks, 8 founder moves | StarterStory (1,000+ interviews) · IndieHackers (5,000+ founders) · YC Startup School · MicroConf |
+| 4 | [`pricing/`](pricing) | Pricing lab: value-based pricing, tier design, price raise audits, 12+ real cases (v0.5) | Hormozi Value Equation + StarterStory + IndieHackers pricing outcomes |
+| 5 | [`compass/`](compass) | KPI dashboard: stage-appropriate metrics ($0→$1M+), industry benchmarks, health thresholds (v0.5) | Blueprint revenue stage data + model-specific benchmarks |
+| 6 | [`gtm/`](gtm) | Go-to-market playbook: 10 channels, stage-matched recommendations, 20+ case studies (v0.5) | StarterStory + IndieHackers + Blueprint cross-referencing (data confidence tags) |
 
 ### How to Use
 
@@ -66,9 +75,9 @@ Six skills that take you from idea to execution, built on systematic analysis of
 git clone https://github.com/alpha-xone/startup-kit
 
 # Or copy individual skills to your CodeWhale skills directory
+cp -r forge ~/.codewhale/skills/
 cp -r preflight ~/.codewhale/skills/
 cp -r blueprint ~/.codewhale/skills/
-cp -r forge ~/.codewhale/skills/
 cp -r pricing ~/.codewhale/skills/
 cp -r compass ~/.codewhale/skills/
 cp -r gtm ~/.codewhale/skills/
@@ -76,9 +85,9 @@ cp -r gtm ~/.codewhale/skills/
 
 Then ask your agent:
 
+> **"Find me ideas in [domain]"** → Forge opportunity report
 > **"Run Preflight on my idea"** → Diagnostic report
 > **"Run Blueprint on my startup"** → Success pattern analysis
-> **"Find me ideas in [domain]"** → Forge opportunity report
 > **"How should I price my product?"** → Pricing analysis
 > **"What metrics should I track?"** → Compass dashboard
 > **"Which GTM channel for my stage?"** → Channel match analysis
@@ -89,12 +98,12 @@ Then ask your agent:
 startup-kit/
 ├── README.md
 ├── README.zh-CN.md
-├── preflight/       ← 12-dimension diagnostic
-├── blueprint/       ← Success playbook
-├── forge/           ← Idea generation (v0.5)
-├── pricing/         ← Pricing lab (v0.5)
-├── compass/         ← KPI dashboard (v0.5)
-└── gtm/             ← Go-to-market (v0.5)
+├── forge/           ← ① Find problems
+├── preflight/       ← ② Diagnose risks
+├── blueprint/       ← ③ Prescribe moves
+├── pricing/         ← ④ Set pricing
+├── compass/         ← ⑤ Track metrics
+└── gtm/             ← ⑥ Go to market
 ```
 
 Every skill at the same level. Each has its own SKILL.md, SKILL.zh-CN.md, and references/.
@@ -102,6 +111,8 @@ Every skill at the same level. Each has its own SKILL.md, SKILL.zh-CN.md, and re
 ## 🔮 Roadmap
 
 - **forge** ✅ — Idea generation engine (v0.5)
+- **preflight** ✅ — 12-dimension diagnostic
+- **blueprint** ✅ — Success playbook
 - **pricing** ✅ — Pricing lab (v0.5)
 - **compass** ✅ — KPI dashboard (v0.5)
 - **gtm** ✅ — Go-to-market playbook (v0.5)
