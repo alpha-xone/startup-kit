@@ -9,7 +9,7 @@ Two complementary skills built on systematic analysis of **2,500+ failed startup
 ```
                   ┌─────────────────┐
                   │   preflight ·    │
-                  │   "怎么死"       │  ← 2,500+ failures
+                  │   "how you die"  │  ← 2,500+ failures
                   │  12-dimension    │
                   │  stress test     │
                   └────────┬────────┘
@@ -17,7 +17,7 @@ Two complementary skills built on systematic analysis of **2,500+ failed startup
                            ▼
                   ┌─────────────────┐
                   │  blueprint ·    │
-                  │   "怎么赢"       │  ← 5,000+ successes
+                  │   "how you win"  │  ← 5,000+ successes
                   │  5 modules      │
                   │  8 founder moves│
                   └────────┬────────┘
@@ -118,6 +118,7 @@ Module 5: Countermoves  → Preflight 12-dimension countermove mapping
 ```
 startup-kit/
 ├── README.md                  ← You are here
+├── README.zh-CN.md            ← 中文版
 ├── preflight/
 │   ├── SKILL.md               ← Evaluation pipeline + 12 dimensions (English)
 │   ├── SKILL.zh-CN.md         ← 中文版
