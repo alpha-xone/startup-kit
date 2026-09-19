@@ -1,4 +1,10 @@
-# Personal / non-skill files
+# ─────────────────────────────────────────────────────────────
+# startup-kit 公开技能库：只跟踪 README* 与 6 个 skill 目录
+# （forge/ preflight/ blueprint/ pricing/ compass/ gtm/）
+# 其余为本机个人调研内容，一律不进入版本库、不推送公开仓
+# ─────────────────────────────────────────────────────────────
+
+# Personal / non-skill files（原有条目）
 Box/
 Documents/
 Downloads/
@@ -15,3 +21,30 @@ __pycache__/
 
 # Node
 node_modules/
+
+# ── DSH / CodeWhale 运行时与记忆 ──
+.codewhale/
+.deepseek/
+.deepseek-harness/
+
+# ── 工作区指令 ──
+/AGENTS.md
+
+# ── 个人调研与产出（根级）──
+/ai-marketing/
+/AiToEarn/
+/assets/
+/climate_risk_api/
+/config/
+/GitHub/
+/idea-discovery/
+/prospect/
+/references/
+/reports/
+/research/
+/scripts/
+/startup-kit/
+/zero.work/
+
+# ── skill 目录内的本地产出 ──
+preflight/reports/
