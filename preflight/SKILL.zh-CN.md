@@ -1,6 +1,6 @@
 ---
 name: preflight
-description: "[Chinese version · 中文版] Preflight · 创业体征检查 — 12维度系统评估任何创业项目的存活概率。For English version see SKILL.md. 数据来源：Loot Drop (1,749家失败初创企业, $535B烧毁) · CB Insights (483份尸检, 竞争53%/无需求42%/资金耗尽29%) · Failory (200+分析, Google墓园100+产品, Amazon墓园50+) · LOOTR热力图 (16行业×12失败原因) · Killed by Google (307个停产产品) · Kaggle CB Insights数据集 (890企业SQL分析, 1992-2024) · Product Grave (99个死亡科技产品) · Unbiased Ventures (2024-2025重大失败, 7VC维度映射)。输出HTML仪表盘/报告，支持多项目对比和循环复查。五道闸门(G0→G4)流水线，适用于所有行业和项目类型。"
+description: "[Chinese version · 中文版] Preflight · 创业体征检查 — 12维度系统评估任何创业项目的存活概率。For English version see SKILL.md. 数据来源：Loot Drop (1,749家失败初创企业, $535B烧毁) · CB Insights (483份尸检, 竞争53%/无需求42%/资金耗尽29%) · Failory (200+分析, Google墓园100+产品, Amazon墓园50+) · LOOTR热力图 (16行业×12失败原因) · Killed by Google (307个停产产品) · DANG! AI Graveyard (5000+ AI工具追踪, 30%已关闭) · Kaggle CB Insights数据集 (890企业SQL分析, 1992-2024) · Product Grave (99个死亡科技产品) · Unbiased Ventures (2024-2025重大失败, 7VC维度映射)。AI项目额外触发5个条件式深度追问（套壳斩杀线、TC-PMF推理经济、AI信任、AI盈利模式、AI结构性泡沫）。输出HTML仪表盘/报告，支持多项目对比和循环复查。五道闸门(G0→G4)流水线，适用于所有行业和项目类型。"
 ---
 
 # Preflight · 创业体征检查
@@ -14,11 +14,12 @@ description: "[Chinese version · 中文版] Preflight · 创业体征检查 —
 - **漏斗（fail-fast）**：五道闸门 G0→G4，越往后越贵。一个在 G1 就该死的 idea，不放它到 G3 浪费时间。
 - **循环（loop）**：每次跑完把结果写入记分卡。复查时读上一轮 → 算增量 → 检查止损线 → 更新决策。
 
-**G2 是本系统的核心**——12 个统一维度覆盖所有项目类型。每个维度的评估深度根据项目特征自动调整：
+**G2 是本系统的核心**——12 个统一维度覆盖所有项目类型，外加 **5 个条件式 AI 深度追问**。每个维度的评估深度根据项目特征自动调整：
 
 | 项目特征 | 触发的深度诊断 |
 |---|---|
-| 依赖第三方 API/平台（AI 模型、Shopify、AWS、iOS 等） | 维度 11「平台依赖性」深入：套壳厚度、替代风险、成本结构 |
+| **AI Native**（调用 LLM API、AI-first 产品、依赖基础模型） | 全部 5 个 AI 深度追问：套壳厚度 + 推理经济 (TC-PMF) + AI 信任 + AI 盈利模式 + AI 结构性泡沫 |
+| 依赖第三方 API/平台（Shopify、AWS、iOS 等） | 维度 11「平台依赖性」深入：套壳厚度、替代风险、成本结构 |
 | 硬件/制造业 | 维度 7「产品可行性」深入：供应链、量产、良率 |
 | 金融/电信/医疗 | 维度 8「监管合规」深入：牌照、资本金、消费者保护 |
 | 市场平台 | 维度 10「增长路径」深入：冷启动、供需平衡 |
@@ -26,7 +27,7 @@ description: "[Chinese version · 中文版] Preflight · 创业体征检查 —
 | B2C 消费品 | 维度 3「单位经济」深入：LTV/CAC、复购率、退货率 |
 | 纯软件/SaaS | 无特殊深入——走标准诊断即可 |
 
-> **核心原则**：12 个维度对**所有项目**必修——因为墓园数据告诉我们，一个 SaaS 公司和一家硬件工厂可能死于同一把刀（例如竞争、团队、现金）。但每个维度的**追问深度**由项目的具体特征决定——不要对一家面包店问「你的 API 成本占比多少」。
+> **核心原则**：12 个维度对**所有项目**必修——因为墓园数据告诉我们，一个 SaaS 公司和一家硬件工厂可能死于同一把刀（例如竞争、团队、现金）。但每个维度的**追问深度**由项目的具体特征决定——不要对一家面包店问「你的 API 成本占比多少」。对于 AI Native 项目，在 12 个通用维度之外还需执行全部 5 个 AI 深度追问。
 
 ## 五道闸门
 
@@ -63,7 +64,11 @@ description: "[Chinese version · 中文版] Preflight · 创业体征检查 —
 
 ### 第 3 步：生成 HTML 输出（默认）
 
-样式遵循 `references/web-design-guidelines.md`。
+报告靠**委派**渲染，不要自己拍配色和版式：
+
+1. 调 **`impeccable`** skill 做视觉层——单项目报告走 Read 模式，批量仪表盘走 Operate。
+2. 调 **`diagram-design`** skill 画**每一张图**——**默认 light 模板**（`assets/template.html`；卡片式长文用 `template-full.html`）。
+3. `references/web-design-guidelines.md` 管内容契约、状态语义和完整委派流程。它已不再定义配色，不要自己另立一套。
 
 ---
 
@@ -73,8 +78,9 @@ description: "[Chinese version · 中文版] Preflight · 创业体征检查 —
 
 1. **12 个维度对所有项目必修**——每个维度都有核心检查问题
 2. **追问深度按项目特征调节**——只在匹配时加载 `references/conditional-diagnostics.md` 中对应的深度问题
-3. **所有维度共享同一数据源**——墓园数据（CB Insights、Loot Drop、LOOTR、Killed by Google）不为 AI 和非 AI 分别开两个诊断分支
-4. **Big Tech 墓园启示在诊断完成后统一给出**——不分项目类型
+3. **AI Native 项目额外获得 5 个条件式深度追问**——注入到对应的主维度中
+4. **所有维度共享同一数据源**——墓园数据（CB Insights、Loot Drop、LOOTR、Killed by Google、DANG! AI Graveyard）不为不同类型项目分别开两个诊断分支
+5. **Big Tech 墓园启示 + DANG! AI Graveyard 启示在诊断完成后统一给出**——不分项目类型
 
 ### 维度速查表
 
@@ -283,6 +289,7 @@ description: "[Chinese version · 中文版] Preflight · 创业体征检查 —
 
 | 行业 | #1 死因 | #2 死因 | 关键洞察 |
 |---|---|---|---|
+| **AI / AI Native** | 平台依赖/薄套壳 (76%) | 无市场需求 (42%) | 双重绞杀：薄套壳 + 伪需求。多数 AI「创业」是功能，不是生意。见 DANG! AI Graveyard |
 | **消费品** | 竞争 (178) | 单位经济 (114) | 消费者陷阱：VC 补贴获客、利润从不来 |
 | **通信服务** | 竞争 (257) | 无市场需求 (80) | 最低壁垒 → 最血腥竞争 |
 | **信息科技** | 竞争 (260) | 无市场需求 (46) | 最容易进的赛道 = 最多尸体 |
@@ -310,13 +317,22 @@ Killed by Google (307 产品) + Amazon 墓园 (50+)。详见 `references/big-tec
 
 **核心启示**：大厂验证 ≠ 赛道好；大厂放弃 ≠ 赛道没了（Google Reader 死→Feedly 活）；免费 + 无限资金 ≠ 成功；太早 = 晚来的人赢。
 
+### DANG! AI Graveyard 启示
+
+来自 DANG! AI Graveyard (5000+ AI 工具追踪，30% 已关闭，2025 年起约每月死 100 个)：
+- **薄套壳综合症**：76% 死亡 AI 项目是薄套壳——无独有数据、无微调、只有 API 调用 + 一个 UI
+- **「功能陷阱」**：多数 AI 工具是功能，而非生意——会被大平台吸收
+- **2025 年 3 月快照**：一个月内 100 个 AI 工具死亡——加速中
+- **AI 失败率 > 90%**——比传统科技创业高约 20%
+- **AI 创业平均存活**：约 18 个月
+
 ### G2 输出格式
 
 ```
-## 💀 G2 12 维度斩杀线诊断
+## 💀 G2 12 维度斩杀线诊断（+ AI 深度追问）
 
 ### 项目特征识别
-[自动识别的特征：平台依赖 / 硬件 / 监管行业 / 市场平台 / B2C消费品 / 政策驱动 / 纯软件]
+[自动识别的特征：AI Native / 平台依赖 / 硬件 / 监管行业 / 市场平台 / B2C消费品 / 政策驱动 / 纯软件]
 
 ### 维度匹配
 | # | 维度 | 风险 | 匹配依据 | 逃脱路径 |
@@ -331,9 +347,14 @@ Killed by Google (307 产品) + Amazon 墓园 (50+)。详见 `references/big-tec
 
 ### 深度追问（仅触发条件匹配时）
 [列出触发深度追问的维度 + 追问结果]
+- [标准深度追问：平台依赖、市场平台等]
+- 🔴 AI 深度追问（5 个激活）：TC-PMF/推理经济、套壳斩杀线、AI 信任、AI 盈利模式、AI 结构性泡沫
 
 ### Big Tech 墓园相关启示
 [该项目与 Google/Amazon 死亡模式的类比（如有）]
+
+### DANG! AI Graveyard 相关启示
+[AI 特有墓园模式（如项目是 AI Native）]
 
 ### 整体斩杀风险
 **综合评级：🔴 高 / 🟡 中 / 🟢 低**
@@ -352,31 +373,24 @@ Killed by Google (307 产品) + Amazon 墓园 (50+)。详见 `references/big-tec
 
 ## 批量模式
 
-多个 idea 排序：每个只跑 G1+G2 快速版 → 综合分排序 → Top 1-2 走完整流水线。输出 HTML 仪表盘（排行榜卡片 + 对比雷达图）。
+多个 idea 排序：每个只跑 G1+G2 快速版 → 综合分排序 → Top 1-2 走完整流水线。输出 HTML 仪表盘（排行榜卡片 + 一张对比图：分组条形图或四象限）。
 
 ---
 
 ## HTML 输出
 
-```
-┌─────────────────────────────────────────┐
-│  导航栏：项目名 · 轮次 · 日期 · 状态     │
-│  综合决策标签（🟢/🟡/🔴）              │
-├─────────────────────────────────────────┤
-│  一句话结论                              │
-├──────────────┬──────────────────────────┤
-│  雷达图(12维)│  维度评分卡片网格          │
-├──────────────┴──────────────────────────┤
-│  各维度详情（可折叠）+ 深度追问展开      │
-│  行业特殊风险 + Big Tech 启示            │
-├─────────────────────────────────────────┤
-│  止损线检查区                            │
-├─────────────────────────────────────────┤
-│  下一步行动 + 待补证据清单                │
-└─────────────────────────────────────────┘
-```
+报告必须承载这些区块。版式由 impeccable 决定——这是内容契约，不是模板：
 
-样式：`references/web-design-guidelines.md`。
+1. 决策头——项目名 · 轮次 · 日期 · 决策标签（GO / 迭代 / KILL）
+2. 一句话结论
+3. 各维度得分——图或表，带趋势箭头
+4. 各维度详情（可折叠）+ 展开的深度追问
+5. 🔴 AI 深度追问（项目是 AI Native 时）
+6. 行业风险画像 + 墓园对照（Big Tech；AI 项目另加 DANG! AI Graveyard）
+7. 止损线检查——条件 + 是否触发
+8. 下一步行动 + 待补证据
+
+内容契约、状态色和完整委派流程见 `references/web-design-guidelines.md`。视觉层走 `impeccable` skill，每一张图走 `diagram-design` skill 且**默认 light**。12 个维度**塞不进**雷达（轴上限 5）——用条形图，或先聚合成 ≤5 轴。
 
 ---
 
@@ -390,15 +404,16 @@ Killed by Google (307 产品) + Amazon 墓园 (50+)。详见 `references/big-tec
 | `references/scoring.md` | G4 评分/决策/阈值 |
 | `references/industry-profiles.md` | 16 行业 × 12 死因剖面 |
 | `references/big-tech-graveyard.md` | Google/Amazon/Microsoft 墓园 |
-| `references/conditional-diagnostics.md` | 各维度的深度追问清单（按项目特征索引） |
-| `references/web-design-guidelines.md` | HTML 设计系统 |
+| `references/conditional-diagnostics.md` | 各维度的深度追问清单（按项目特征索引，含 AI 深度追问） |
+| `references/web-design-guidelines.md` | 报告内容契约、状态语义、渲染委派 |
 | `assets/scorecard-template.md` | 记分卡模板 |
 
 ---
 
 ## 输出规范
 
-- **默认**：自包含 HTML 页面
+- **默认**：自包含的 light 模式 HTML 页面，由 `impeccable` skill 渲染，每一张图由 `diagram-design` skill 绘制。`scripts/generate-dashboard.py` 只是无 skill 环境下的降级后备——见 `references/web-design-guidelines.md` 第五节
 - **数据引用**：每条诊断至少配 1 个真实案例 + 金额/数据
 - **维度覆盖**：12 个维度对所有项目必修。不要因为项目「不是 AI」就跳过维度 11（平台依赖）——一个 Shopify 插件和 AI wrapper 面临同样的平台依赖风险
+- **AI 深度追问**：仅对 AI Native 项目触发。执行全部 5 个：TC-PMF/推理经济、套壳斩杀线、AI 信任、AI 盈利模式、AI 结构性泡沫
 - **深度追问**：只在项目特征匹配时触发，不要强行追问不相关的深度问题

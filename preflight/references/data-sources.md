@@ -68,6 +68,16 @@
 - **覆盖**: Magic Leap ($3.5B)、Clubhouse、Neeva、Google Stadia、FTX、Google Hangouts、Celsius Network 等
 - **技术栈**: Next.js + Vercel + Cloudflare
 
+### DANG! AI Graveyard
+
+- **规模**: 5,000+ 被追踪的 AI 工具，约 30% 已彻底关闭
+- **节奏**: 2025 年起约每月死亡 100 个 AI 工具（2025 年 3 月单月即 100 个）
+- **关键发现**:
+  1. 76% 的死亡 AI 项目是**薄套壳**——无独有数据、无微调，只有 API 调用 + 一个 UI
+  2. 多数 AI 工具是**功能**而非**生意**，会被大平台内置功能吸收
+  3. AI 创业失败率 > 90%，高于传统科技创业；平均存活约 18 个月
+- **在 preflight 中的用法**: 仅对 AI Native 项目触发，对应 5 个 AI 深度追问中的 A2「套壳斩杀线」，并在 G2 之后与 Big Tech 墓园启示一并给出
+
 ### Unbiased Ventures (unbiasedventures.ch)
 
 - **范围**: 2024–2025 年重大失败案例
