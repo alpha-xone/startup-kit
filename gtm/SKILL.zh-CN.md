@@ -70,6 +70,14 @@ description: "GTM — 创始人的 Go-to-market 策略手册。从 5,000+ 创始
 | `references/stage-gtm.md` | 阶段匹配的 GTM + 卡住创始人的诊断问题 |
 | `references/data-sources.md` | 数据源、可信度级别、已知缺口 |
 
+## HTML 输出（可选）
+
+本 skill 默认输出结构化 Markdown。用户要可视化报告时——渠道对比、阶段过渡图——靠**委派**渲染，不要自己拍配色：
+
+- 视觉层 → 调 **`impeccable`** skill（报告走 Read 模式；做成可用仪表盘则走 Operate）。
+- 每一张图 → 调 **`diagram-design`** skill，**默认 light 模板**（`assets/template.html`）。
+- 产出单文件、自包含的 light 模式 HTML。不要自己写配色或图表。
+
 ## 输出规则
 
 - **数据可信度标签**：每条建议标记数据可信度（⭐⭐⭐⭐⭐ 强 / ⚠️ 部分 / ❌ 薄）

@@ -97,6 +97,14 @@ description: "Pricing — 定价实验室。价值定价框架、WTP 调研方�
 [1-3 个定价风险]
 ```
 
+## HTML 输出（可选）
+
+本 skill 默认输出结构化 Markdown。用户要可视化报告时，靠**委派**渲染，不要自己拍配色：
+
+- 视觉层 → 调 **`impeccable`** skill（报告走 Read 模式）。
+- 每一张图 → 调 **`diagram-design`** skill，**默认 light 模板**（`assets/template.html`）。
+- 产出单文件、自包含的 light 模式 HTML。不要自己写配色或图表。
+
 ## 输出规则
 
 - **价值优先**：每条定价建议有痛苦-价值方程支撑

@@ -1,110 +1,130 @@
-# HTML Output Design Guidelines
+# web-design-guidelines — Blueprint report rendering spec
 
-When generating HTML reports for Blueprint, follow this design system. The goal is clean, professional, data-dense reports — not flashy marketing pages.
+> **This file no longer defines colors or fonts.** The visual layer of a Blueprint report belongs to the `impeccable` skill; every chart belongs to the `diagram-design` skill.
+> This file defines exactly three things: **render delegation**, **status semantics**, and **the content contract the report must carry**.
+>
+> The old hardcoded palette here (success/warning/danger + `-apple-system` type ramp) is **deprecated**. Do not reuse it.
 
-## Color Palette
+---
 
-```
-Success Green: #16A34A (Completed / Healthy / 🟢)
-Warning Amber: #CA8A04 (Partial / At-risk / 🟡)
-Danger Red:   #DC2626 (Missing / Critical / 🔴)
-Neutral Dark: #111827 (Text / Headings)
-Neutral Mid:  #6B7280 (Secondary text / Labels)
-Neutral Light:#F3F4F6 (Backgrounds / Cards)
-White:        #FFFFFF (Card backgrounds)
-Border:       #E5E7EB (Card borders / Dividers)
-```
+## 1. Render delegation (mandatory flow)
 
-## Typography
+When producing any Blueprint HTML report, follow this order without skipping steps.
 
-```css
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+### 1.1 Visual layer → invoke the `impeccable` skill
 
-h1: 24px, bold
-h2: 20px, bold
-h3: 16px, bold
-body: 14px, #111827
-secondary: 12px, #6B7280
-```
+- A Blueprint report is an impeccable **Read** surface (the reader is understanding a playbook against their own stage); a multi-project comparison is closer to **Operate**. Follow the matching mode.
+- Run `node <skill-base-dir>/scripts/context.mjs --target <report path>` once, follow its directives for which playbook to load, and load `reference/craft-floor.md` immediately before editing UI.
+- A report is a one-shot artifact: do **not** run `init` to author PRODUCT.md / DESIGN.md first, and do not stop to ask the user because no DESIGN.md exists. Build the Read surface directly, then mention that `init` is available afterward.
+- Honor impeccable's quality floor. The rules that bite hardest on this report (the deprecated spec violated all of them):
+  - **No eyebrow / kicker label above a heading.** This one is a hard ban.
+  - **No colored `border-left` / `border-right` rule** as decoration on cards, list items, or callouts.
+  - **No emoji or Unicode glyphs standing in for an icon system.** Status icons are one consistent set of drawn SVGs — see `references/primitive-icons.md` in `diagram-design`.
+  - **No same-size icon + heading + text cards as the page skeleton.** A module score card is data (module · score · gaps), not a card wall.
+  - No gradient text, decorative glass/blur, zero-offset colored halos, or hard offset shadows.
 
-## Layout
+### 1.2 Chart layer → invoke the `diagram-design` skill
 
-**Overall structure** (top to bottom):
+- Every chart in the report is drawn with diagram-design, producing self-contained HTML with inline SVG. Do **not** hand-roll a radar, do **not** pull in Chart.js or any chart library, do **not** use canvas.
+- **Default to light**: start from `assets/template.html` (minimal light); use `assets/template-full.html` when the report is a card-based long-form piece. Unless the user explicitly asks for dark, do **not** use `template-dark.html` or any `example-*-dark.html`.
+- The first diagram in a project triggers its style-guide gate. For a report, **take option (e), keep the default tokens** (paper + ink + atomic-tangerine accent) rather than interrupting the user; only branch to a real profile when the report targets a project that already ships DESIGN.md / brand tokens.
+- **Load the chosen type's `references/type-*.md` before drawing**, and respect the complexity budgets it states.
+- Run the skill's self-check before delivery: `python scripts/self_check.py <file>` (plus any geometry verifier available in a repo checkout).
 
-```
-┌─────────────────────────────────────────┐
-│  Nav: Project Name · Mode · Date        │
-├─────────────────────────────────────────┤
-│  Project Overview Card                  │
-│  Stage / Model / Founder Type / Challenge│
-├──────────────┬──────────────────────────┤
-│  Stage       │  Module Scores & Actions │
-│  Progress    │  (5 modules, scored)     │
-│  Indicator   │                          │
-├──────────────┴──────────────────────────┤
-│  Move Completion Radar (8 moves)        │
-├─────────────────────────────────────────┤
-│  Peer Benchmark Comparison              │
-├─────────────────────────────────────────┤
-│  Top 3 Actions (priority ordered)       │
-└─────────────────────────────────────────┘
-```
+#### Chart → type mapping (report defaults)
 
-## Components
+| What the report shows | Diagram type | Notes |
+|---|---|---|
+| Move completion across the 8 founder moves | **Bar chart** (`type-bar.md`) | ⚠️ Radar caps at **5** axes. 8 moves do **not** fit a radar — use a bar chart, or group to ≤5 |
+| Module scores (5 modules) | **Bar chart**, or a plain table | Five values rarely earn a chart |
+| Stage ladder (Validation → Engine) | **Flowchart** (`type-flowchart.md`) or a ladder table | ≤9 nodes |
+| Peer benchmark gaps | **Table** | A table is the right answer here; do not draw it |
+| Revenue-stage trajectory against case data | **Line** (`type-line.md`) or **Scatter** (`type-scatter.md`) | ≤5 series / ≤30 points |
+| Two-axis prioritisation of actions | **Quadrant** (`type-quadrant.md`) | ≤12 items |
+| Benchmarking against peer cases | **Slopegraph** or **Bar** | |
 
-### Project Overview Card
-- Top of the page, full width
-- Title, revenue stage, business model, founder type
-- One-line challenge description
-- If Preflight data available: add a small Preflight score badge
+- Ask first whether the figure is needed at all: if a three-row table says it, write the table.
+- Keep charts scarce: **1–2 primary figures** per report, tables for the rest.
 
-### Stage Progress Indicator
-- 5-stage ladder: Validation → PMF → Scaling → Team → Engine
-- Current stage highlighted, completed stages in green
-- Left side of the main content or top bar
+#### Embedding diagram-design output
 
-### Module Score Cards
-- 5 cards, one per module
-- Each card: module name, 1-sentence score, 2-3 bullet gaps
-- Color-coded: 🟢 (aligned with pattern) / 🟡 (partial) / 🔴 (missing)
+- Take the produced **`<svg>` node** (with its `<title>` / `<desc>`) and inline it into the report HTML. Do **not** iframe it, do **not** `<img src>` it, do **not** screenshot it.
+- Rename each figure's `<title>` / `<desc>` ids with a per-figure prefix (`<slug>-title` / `<slug>-desc`) so multiple figures in one report never collide.
+- Fonts: diagram-design loads one Google Fonts `<link>`. The report may keep **that single** external link (with `preconnect` + `display=swap`); nothing else may be external. For a fully offline report, drop the link, fall back to system families, and say so in the delivery note.
+- The report stays **self-contained**: inline `<style>`, no framework, no build step. Small interactions may use inline `<script>`; the figures themselves must not depend on JS to render.
 
-### Move Completion Radar (optional, for detailed reports)
-- 8-axis radar chart: Charge from Day 1, Build in Public, Micro-Niche, Stair-Step, PLG, Unscalable Moves, Empty-Room Demo, Pain-Ladder Pricing
-- Score each 0-3 based on alignment with best practices
-- Use a simple SVG or canvas radar chart
+### 1.3 This file → content and semantics only
 
-### Peer Benchmark Table
-- 3-4 columns: Pattern | Your Status | Peers at This Stage | Gap
-- Color-code gaps: 🟢 closed / 🟡 partial / 🔴 open
+---
 
-### Top 3 Actions
-- Numbered list with bold titles
-- Each: What to do + Why + Expected outcome + Timeframe
-- "This week" actions
+## 2. Mode: light by default
 
-## Responsiveness
+- Reports are **light**: paper/white ground, dark ink type. Dark is opt-in and never mixed with light inside one delivery.
+- Print / PDF export must stay readable: light ground, status colors preserved.
+- Body and table text ≥ 4.5:1 contrast; large type ≥ 3:1.
 
-- Mobile-first: cards stack vertically, radar chart becomes a list
-- Max width: 960px centered
-- Print-friendly: hide shadows, keep colors
+---
 
-## CSS Reference
+## 3. Status semantics (the only colors this skill fixes)
 
-```css
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; color: #111827; background: #F3F4F6; line-height: 1.5; }
-.container { max-width: 960px; margin: 0 auto; padding: 24px; }
-.card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
-.card h2 { font-size: 20px; margin-bottom: 12px; }
-.badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; }
-.badge-green { background: #DCFCE7; color: #166534; }
-.badge-amber { background: #FEF9C3; color: #854D0E; }
-.badge-red { background: #FEE2E2; color: #991B1B; }
-.score-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
-.action-item { border-left: 3px solid #16A34A; padding-left: 16px; margin-bottom: 16px; }
-.action-item h3 { font-size: 16px; margin-bottom: 4px; }
-table { width: 100%; border-collapse: collapse; }
-th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid #E5E7EB; }
-th { font-weight: 600; color: #6B7280; font-size: 12px; text-transform: uppercase; }
-</style>
-```
+Status color is **content semantics** (green/amber/red *is* the finding), not visual style, so it is pinned here and consumed as a semantic token by both skills:
+
+| Status | Value | Used for |
+|---|---|---|
+| 🟢 Aligned | `#16A34A` | Pattern matched, gap closed, healthy |
+| 🟡 Partial | `#D97706` | Partial alignment, at-risk |
+| 🔴 Missing | `#DC2626` | Gap open, critical omission |
+| ⚪ Not scored / neutral | `#6B7280` | No data, baseline reference |
+
+Rules:
+
+- **Every other** color (ground, cards, borders, emphasis, categorical chart fills) comes from the impeccable / diagram-design theme. Do not re-declare a palette in the report.
+- **Never signal status by color alone**: pair it with text (Aligned / Partial / Missing) or shape (filled / hollow / hatched).
+- One status, one color, throughout a single report.
+- Do not reintroduce the old fixed categorical sequence. Multi-series fills come from diagram-design's style guide — except when the categories *are* aligned/partial/missing, in which case use the three values above.
+
+---
+
+## 4. Content contract
+
+This is the information a Blueprint report must carry — not a layout. Layout belongs to impeccable. Every item below must be findable.
+
+### Single-project report
+
+1. **Project overview** — name, revenue stage, business model, founder type, the one-line challenge.
+2. **Stage position** — where they are on Validation → PMF → Scaling → Team → Engine, and which stage patterns they are currently hitting or missing.
+3. **Module scores** — the 5 modules, each with its one-sentence verdict and its 2–3 concrete gaps. Missing data is labelled "not scored" — never defaulted to a passing score.
+4. **Move completion** — the 8 founder moves, scored, with the top 2–3 gaps named explicitly.
+5. **Peer benchmark** — pattern · their status · what peers at this stage do · the gap.
+6. **Preflight cross-reference** — when a Preflight scorecard exists, show the mapped risk and its countermove.
+7. **Top 3 actions** — what to do, why, expected outcome, timeframe. "This week" specificity required.
+
+### Multi-project comparison
+
+1. One column/card per project: stage · module coverage · move completion · biggest gap.
+2. One comparison figure (grouped bar or quadrant).
+3. A ranked recommendation naming each project's next move.
+
+### Responsive
+
+- Single column on narrow screens, two columns or side-by-side when wide. Tables may scroll horizontally rather than compress.
+- Max width is decided by impeccable; do not pin px here.
+
+---
+
+## 5. Fallback path (only when both skills are unavailable)
+
+There is no scripted generator for Blueprint. If neither skill is installed, hand-author the report from the content contract in §4, render figures as plain HTML tables, and tell the user that the visual and diagram layers were not available.
+
+---
+
+## 6. Pre-delivery checklist
+
+- [ ] Report is **light** and self-contained (except the one diagram-design Google Fonts link).
+- [ ] Visual layer genuinely went through impeccable (Read/Operate mode + `craft-floor.md`).
+- [ ] Every figure came from diagram-design, with the matching `type-*.md` loaded, inside budget, and passing `self_check.py`.
+- [ ] The 8 moves were **not** forced into a radar (cap is 5 axes).
+- [ ] Only the four status colors are fixed; nothing else is re-declared.
+- [ ] No eyebrow, no colored `border-left`, no emoji as icons, no gradient text or glass.
+- [ ] §4 items 1–7 (or the multi-project 1–3) are all present and findable.
+- [ ] Print preview is readable; nothing overflows on narrow screens.

@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """
-idea-forge HTML Dashboard Generator
+idea-forge HTML Dashboard Generator — FALLBACK ONLY
 读取记分卡数据，生成单项目报告或批量对比仪表盘的 HTML 页面。
 用法:
   python generate-dashboard.py single <project-name> <score-file.json>
   python generate-dashboard.py batch <batch-file.json>
 
-输出的 HTML 遵循 references/web-design-guidelines.md 设计系统。
+⚠️ 这是**降级后备**，不是默认路径。
+   默认路径见 references/web-design-guidelines.md：
+     视觉层走 `impeccable` skill，每一张图走 `diagram-design` skill（默认 light 模板）。
+   只有在两个 skill 都装不上、或需要可复现的确定性输出（批量跑分 / CI）时才用本脚本。
+   本脚本里硬编码的配色与字体是**旧版风格**，不遵循 web-design-guidelines.md —— 用它之前先告知用户。
 """
 
 import json
@@ -15,7 +19,7 @@ import os
 import re
 from html import escape
 
-# ─── 设计系统常量（与 web-design-guidelines.md 对应） ───
+# ─── 旧版设计系统常量（降级后备专用；默认路径由 impeccable / diagram-design 决定） ───
 
 COLORS = {
     "go": "#16a34a",
@@ -38,7 +42,8 @@ RADAR_COLORS = [
 
 DIMENSIONS = ["需求", "斩杀线", "时机", "自身契合", "分发", "机会成本"]
 
-CSS = """/* design system from web-design-guidelines.md */
+CSS = """/* LEGACY palette — the fallback path only. The default path delegates to the
+   impeccable (visual) and diagram-design (charts, light mode) skills. */
 :root {
     --go: #16a34a; --iterate: #d97706; --kill: #dc2626;
     --bg: #f8fafc; --card: #ffffff; --primary: #1e293b;

@@ -168,14 +168,21 @@ description: "Blueprint · 创业蓝图 — preflight 诊断「怎么死」，Bl
 
 ## HTML 输出
 
-需要可视化报告时：生成自包含 HTML，包含：
-- 项目概览卡片
-- 阶段进度指示器
-- 招式完成度雷达图（8 个创始人招式打分）
-- 同行对标表
-- 行动优先级列表
+需要可视化报告时，靠**委派**渲染，不要自己拍配色和版式：
 
-样式参考：`references/web-design-guidelines.md`。
+1. 调 **`impeccable`** skill 做视觉层——走 Read 模式，因为读者是在拿这套打法对照自己的阶段。
+2. 调 **`diagram-design`** skill 画**每一张图**——**默认 light 模板**（`assets/template.html`；卡片式长文用 `template-full.html`）。
+3. `references/web-design-guidelines.md` 管内容契约、状态语义和完整委派流程。它已不再定义配色，不要自己另立一套。
+
+报告必须承载：
+
+- 项目概览卡——阶段 · 商业模式 · 创始人类型 · 一句话挑战
+- 阶段位置：验证 → PMF → 规模化 → 团队 → 引擎
+- 5 个模块的得分，各自带上具体缺口
+- 8 个创始人招式的完成度打分——用条形图，**不要**用雷达（轴上限 5）
+- 同行对标表
+- 有评分卡时，附 Preflight 交叉引用
+- Top 3 行动，具体到「本周」
 
 ---
 
@@ -200,7 +207,7 @@ description: "Blueprint · 创业蓝图 — preflight 诊断「怎么死」，Bl
 | `references/founder-moves.md` | 完整创始人招式库 + 案例 |
 | `references/preflight-countermoves.md` | 12 维反击映射 |
 | `references/data-sources.md` | 数据源、方法论及可信度说明 |
-| `references/web-design-guidelines.md` | HTML 输出设计规范 |
+| `references/web-design-guidelines.md` | 报告内容契约、状态语义、渲染委派 |
 | `assets/scorecard-template.md` | 标准评分卡模板 |
 
 ---
@@ -211,5 +218,6 @@ description: "Blueprint · 创业蓝图 — preflight 诊断「怎么死」，Bl
 - **阶段匹配**：不要在 $0 MRR 阶段推荐 PLG。不要在 $500K MRR 需要获客渠道时推荐「Day 1 收费」
 - **模式匹配**：不要对市场平台创始人推荐 SaaS 模式
 - **行动优先**：每份报告必须以「本周可做的 Top 3 行动」结尾
+- **渲染**：视觉层由 `impeccable` skill 负责，每一张图由 `diagram-design` skill 以 light 模式绘制。不要自己写配色或图表
 - **语言匹配**：用户用什么语言就用什么语言输出
 - **互补而非重复**：如果用户有 Preflight 数据，始终交叉引用。如果还没跑过 Preflight，建议先跑以获得完整评估

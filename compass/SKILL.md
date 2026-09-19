@@ -109,6 +109,15 @@ A stage-appropriate metrics reference built from cross-referencing blueprint's r
 [Key blockers before transitioning]
 ```
 
+## HTML Output (optional)
+
+This skill defaults to structured Markdown, but a KPI dashboard is the case where a visual report earns its keep. Render it by **delegating**, not by styling it yourself:
+
+- Visual layer → invoke the **`impeccable`** skill (Operate mode — the reader is reading their own numbers).
+- Every chart → invoke the **`diagram-design`** skill, **light templates by default** (`assets/template.html`).
+- Status color is content, not style: 🟢 `#16A34A` / 🟡 `#D97706` / 🔴 `#DC2626`. Pair every status with its word — never color alone.
+- Deliver one self-contained light-mode HTML file. Never hand-roll a palette or a chart.
+
 ## Reference Files
 
 | File | Purpose |

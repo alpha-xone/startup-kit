@@ -68,6 +68,14 @@ For each candidate idea, score 0-2:
 [Industry profile insights, competitor gaps, etc.]
 ```
 
+## HTML Output (optional)
+
+This skill defaults to structured Markdown. When the user wants a visual report, render it by **delegating**, not by styling it yourself:
+
+- Visual layer → invoke the **`impeccable`** skill (Read mode for a report).
+- Every chart → invoke the **`diagram-design`** skill, **light templates by default** (`assets/template.html`).
+- Deliver one self-contained light-mode HTML file. Never hand-roll a palette or a chart.
+
 ## Reference Files
 
 | File | Purpose |

@@ -91,6 +91,18 @@ Then ask your agent:
 > **"What metrics should I track?"** → Compass dashboard
 > **"Which GTM channel for my stage?"** → Channel match analysis
 
+### Report rendering
+
+Reports (HTML) are rendered by delegation, not by a stylesheet hardcoded in this repo:
+
+| Layer | Owner | Default |
+|---|---|---|
+| Visual design | `impeccable` skill | **Light** mode |
+| Every chart | `diagram-design` skill | **Light** templates |
+| Content contract + status semantics | each skill's `references/web-design-guidelines.md` | GO / 迭代 / KILL |
+
+Install those two skills alongside Startup Kit. Without them, preflight falls back to `scripts/generate-dashboard.py` — structurally complete, but styled with the deprecated palette.
+
 ## 📁 Repository Structure
 
 ```

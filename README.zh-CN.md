@@ -82,6 +82,18 @@ cp -r gtm ~/.codewhale/skills/
 > **"该跟踪什么指标？"** → Compass 仪表盘
 > **"什么阶段用什么渠道？"** → 渠道匹配分析
 
+### 报告渲染
+
+报告（HTML）靠**委派**渲染，不在本仓里硬编码样式表：
+
+| 层 | 由谁负责 | 默认 |
+|---|---|---|
+| 视觉设计 | `impeccable` skill | **light 模式** |
+| 每一张图 | `diagram-design` skill | **light 模板** |
+| 内容契约 + 状态语义 | 各 skill 的 `references/web-design-guidelines.md` | GO / 迭代 / KILL |
+
+请把这两个 skill 和 Startup Kit 一起装上。没装的话，preflight 会退回 `scripts/generate-dashboard.py`——结构完整，但用的是已废弃的旧配色。
+
 ## 📁 仓库结构
 
 ```

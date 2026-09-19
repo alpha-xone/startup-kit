@@ -64,7 +64,19 @@ Every dimension is mandatory for all projects. Deep-dive depth adjusts automatic
 - **Loop review** — Re-evaluate the same project over time; track delta changes and kill criteria
 - **Industry-specific diagnostics** — 16 industry failure profiles
 - **Big Tech insights** — Learn from Google, Amazon, Microsoft, Apple patterns
-- **HTML dashboard** — Self-contained, design-system-driven reports with radar charts
+- **HTML dashboard** — Light-mode reports whose visual layer is rendered by the `impeccable` skill and whose charts are drawn by the `diagram-design` skill. Content contract and status semantics live in `references/web-design-guidelines.md`
+
+## 🖼️ Report Rendering
+
+The Markdown diagnosis is the input. The HTML report is rendered by delegation, not by a hardcoded stylesheet:
+
+| Layer | Owner | Default |
+|---|---|---|
+| Visual design | `impeccable` skill | Read mode; Operate for a batch dashboard |
+| Every chart | `diagram-design` skill | **Light** templates (`assets/template.html`) |
+| Content + status semantics | `references/web-design-guidelines.md` | GO `#16A34A` · 迭代 `#D97706` · KILL `#DC2626` |
+
+The two skills are **not** bundled with this repo — install them alongside preflight, or reports fall back to `scripts/generate-dashboard.py` (structurally complete, but styled with the deprecated palette).
 
 ## 🚀 Quick Start
 
@@ -104,12 +116,12 @@ preflight/
 │   ├── validate.md                   ← G1 Validation method
 │   ├── checklist.md                  ← G3 Self-check
 │   ├── scoring.md                    ← G4 Scoring rubrics & thresholds
-│   └── web-design-guidelines.md      ← HTML design system
+│   └── web-design-guidelines.md      ← Report content contract + render delegation
 ├── assets/
 │   └── scorecard-template.md         ← Loop scorecard template
 └── scripts/
     ├── scorecard.py                  ← Init/append scorecards
-    └── generate-dashboard.py         ← Generate HTML dashboards
+    └── generate-dashboard.py         ← Fallback HTML dashboard generator (no-skill environments only)
 ```
 
 ## ⚠️ What This Is NOT

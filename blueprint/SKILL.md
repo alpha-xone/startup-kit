@@ -168,14 +168,20 @@ Compare 2-4 projects against success patterns: run Benchmark Mode on each → ou
 
 ## HTML Output
 
-When the user wants a visual report: generate self-contained HTML with:
-- Project overview card
-- Stage-progress indicator (which stage are you at? which stage patterns are you hitting?)
-- Move completion radar (8 founder moves, scored)
-- Peer benchmark table
-- Action priority list
+When the user wants a visual report, build it by **delegating**, not by styling it yourself:
 
-Styling: `references/web-design-guidelines.md`.
+1. Invoke the **`impeccable`** skill for the visual layer — Read mode, since the reader is matching a playbook against their own stage.
+2. Invoke the **`diagram-design`** skill for every figure — **light templates by default** (`assets/template.html`; `template-full.html` for the long card layout).
+3. `references/web-design-guidelines.md` holds the content contract, the status semantics, and the exact delegation flow. It no longer defines a palette — do not hand-roll one.
+
+The report must carry:
+- Project overview card — stage · model · founder type · the one-line challenge
+- Stage position on Validation → PMF → Scaling → Team → Engine
+- Module scores (5 modules), each with its concrete gaps
+- Move completion across the 8 founder moves, scored — a bar chart, **not** a radar (5-axis cap)
+- Peer benchmark table
+- Preflight cross-reference, when a scorecard exists
+- Top 3 actions, "this week" specific
 
 ---
 
@@ -200,7 +206,7 @@ The two skills share vocabulary: Preflight's 12 dimensions map 1:1 to Module 5 c
 | `references/founder-moves.md` | Full founder move library with examples |
 | `references/preflight-countermoves.md` | 12-dimension countermove mapping |
 | `references/data-sources.md` | Data sources, methodology, and credibility notes |
-| `references/web-design-guidelines.md` | HTML output design system |
+| `references/web-design-guidelines.md` | Report content contract, status semantics, render delegation |
 | `assets/scorecard-template.md` | Standard scorecard template |
 
 ---
@@ -211,5 +217,6 @@ The two skills share vocabulary: Preflight's 12 dimensions map 1:1 to Module 5 c
 - **Stage-appropriateness**: Don't recommend PLG to someone at $0 MRR. Don't recommend "charge from day 1" to someone with $500K MRR who needs an acquisition channel
 - **Model-appropriateness**: Don't recommend SaaS patterns to a marketplace founder
 - **Action-first**: Every report must end with a concrete Top 3 Actions the founder can take THIS week
+- **Rendering**: The visual layer runs through the `impeccable` skill and every figure through the `diagram-design` skill in light mode. Never hand-roll a palette or a chart
 - **Language**: Match the user's language. For Chinese users, see `SKILL.zh-CN.md`
 - **Complement, don't compete**: If user has Preflight data, always cross-reference. If they haven't run Preflight, suggest it for the full picture

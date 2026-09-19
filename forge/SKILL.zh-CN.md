@@ -68,6 +68,14 @@ Forge 是 preflight 的 G0 前置工具。Preflight 问「这个想法行不行�
 [行业数据洞察、竞品空白等]
 ```
 
+## HTML 输出（可选）
+
+本 skill 默认输出结构化 Markdown。用户要可视化报告时，靠**委派**渲染，不要自己拍配色：
+
+- 视觉层 → 调 **`impeccable`** skill（报告走 Read 模式）。
+- 每一张图 → 调 **`diagram-design`** skill，**默认 light 模板**（`assets/template.html`）。
+- 产出单文件、自包含的 light 模式 HTML。不要自己写配色或图表。
+
 ## 输出规则
 
 - **痛点为先**：没有真实痛苦证据就没有「好点子」
