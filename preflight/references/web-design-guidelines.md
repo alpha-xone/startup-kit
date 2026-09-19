@@ -15,7 +15,7 @@
 
 - 单项目报告属于 impeccable 的 **Read 模式**（读者要读懂一份诊断）；批量对比仪表盘偏 **Operate**。按对应模式走。
 - 先跑一次 `node <skill-base-dir>/scripts/context.mjs --target <报告路径>`，按它的 directive 加载对应 playbook；进入实际编辑前加载 `reference/craft-floor.md`。
-- 报告是一次性交付面：**不要**为了它先跑 `init` 写 PRODUCT.md / DESIGN.md，也不要因为项目里缺 DESIGN.md 就停下来问用户。直接按 Read 模式产出；交付后一句话提示可选 `init`。
+- 在一个没有 PRODUCT.md 的项目里，`context.mjs` 会报 `BUILD_INIT_REQUIRED`。那套流程是给**你会长期迭代的产品界面**准备的。报告是一次性交付物，**不要**为了它先跑 `init` 做一轮产品访谈，也不要因为项目缺 DESIGN.md 就停下来问用户——直接按 Read 模式产出，交付后一句话提示 `init` 是可选的后续。**例外**：目标项目已经有 PRODUCT.md / DESIGN.md 时照它执行，不要另起一套。
 - 沿用 impeccable 的质量底线。对本报告影响最大的几条（旧版设计正好全部踩中，一并纠正）：
   - **禁止**在标题上方加 eyebrow / kicker 小标签。
   - **禁止**用 `border-left` / `border-right` 彩色竖条做装饰（旧版 `.conclusion` 的 4px 竖条、`.action-item` 的 3px 竖条都是错的）。

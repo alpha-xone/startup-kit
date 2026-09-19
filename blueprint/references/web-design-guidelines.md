@@ -15,7 +15,7 @@ When producing any Blueprint HTML report, follow this order without skipping ste
 
 - A Blueprint report is an impeccable **Read** surface (the reader is understanding a playbook against their own stage); a multi-project comparison is closer to **Operate**. Follow the matching mode.
 - Run `node <skill-base-dir>/scripts/context.mjs --target <report path>` once, follow its directives for which playbook to load, and load `reference/craft-floor.md` immediately before editing UI.
-- A report is a one-shot artifact: do **not** run `init` to author PRODUCT.md / DESIGN.md first, and do not stop to ask the user because no DESIGN.md exists. Build the Read surface directly, then mention that `init` is available afterward.
+- A report is a one-shot artifact. In a project with no PRODUCT.md, `context.mjs` reports `BUILD_INIT_REQUIRED` — that flow exists for surfaces you will keep iterating. Do **not** run `init` (or stop to ask the user) for a one-off report: build the Read surface directly and mention `init` as an optional follow-up. If the target project already has PRODUCT.md / DESIGN.md, honor them instead of inventing another world.
 - Honor impeccable's quality floor. The rules that bite hardest on this report (the deprecated spec violated all of them):
   - **No eyebrow / kicker label above a heading.** This one is a hard ban.
   - **No colored `border-left` / `border-right` rule** as decoration on cards, list items, or callouts.
