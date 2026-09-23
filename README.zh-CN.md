@@ -6,6 +6,8 @@
 
 六个技能帮你从想法到执行，基于 **2,500+ 失败创业尸检报告** 和 **5,000+ 成功创始人故事** 的系统分析。
 
+另有一套 [**AI 原生 SDLC**](#-ai-原生-sdlc-套件第-712-个-skill) 覆盖软件研发流程本身——把 Anthropic 的 AI 原生 SDLC playbook 六个阶段逐阶段映射到本机 harness。
+
 ## 📊 有什么不同
 
 **每条结论都来自真实案例和数据。** 这不是泛泛的创业建议——是从数千个真实结果中提取的模式：
@@ -71,6 +73,10 @@ cp -r forge ~/.codewhale/skills/
 cp -r pricing ~/.codewhale/skills/
 cp -r compass ~/.codewhale/skills/
 cp -r gtm ~/.codewhale/skills/
+
+# AI 原生 SDLC 套件（6 个阶段）
+cp -r ai-sdlc-plan ai-sdlc-design ai-sdlc-build ~/.codewhale/skills/
+cp -r ai-sdlc-test ai-sdlc-deploy ai-sdlc-maintain ~/.codewhale/skills/
 ```
 
 然后告诉你的 agent：
@@ -94,18 +100,42 @@ cp -r gtm ~/.codewhale/skills/
 
 请把这两个 skill 和 Startup Kit 一起装上。没装的话，preflight 会退回 `scripts/generate-dashboard.py`——结构完整，但用的是已废弃的旧配色。
 
+## 🧭 AI 原生 SDLC 套件（第 7–12 个 skill）
+
+上面 6 个 skill 管**创业流程**（从想法到市场）。这 6 个管**软件研发流程**——把 Anthropic《[The AI-Native SDLC playbook](https://claude.com/blog/the-ai-native-sdlc-playbook)》里的 6 个阶段做成可调用的 skill，并且**逐条标注了 DeepSeek Harness 的等价物或「无等价物」**。
+
+| 阶段 | Skill | 核心玩法 |
+|---|---|---|
+| ① Plan | [`ai-sdlc-plan/`](ai-sdlc-plan) | 用提出者自己的话产出 `intent.md`，由产品负责人放行 |
+| ② Design | [`ai-sdlc-design/`](ai-sdlc-design) | 一次会话走完需求与设计，政策作为约束应用，冲突必须标出 |
+| ③ Build | [`ai-sdlc-build/`](ai-sdlc-build) | 没有已批准的 `plan.md` 不动手；组织知识进 `AGENTS.md` 与 skill |
+| ④ Test | [`ai-sdlc-test/`](ai-sdlc-test) | 给 agent 一条它自己能跑的反馈回路；agent 配置也要做回归测试 |
+| ⑤ Deploy | [`ai-sdlc-deploy/`](ai-sdlc-deploy) | AI 双向评审；人工闸门以确定性策略执行，agent 过不去生产闸门 |
+| ⑥ Maintain | [`ai-sdlc-maintain/`](ai-sdlc-maintain) | 确定性检测器 + 控制带，突破后以新的 `intent.md` 回到 Plan |
+
+**怎么开始**：读 [`AI-SDLC-SKILLS.md`](AI-SDLC-SKILLS.md)——含角色→skill 对照表、引入顺序、一次完整走查，以及一节专门讲**哪些管控在 DSH 里并不存在**（网络白名单、按路径密钥拒绝、托管设置层、`claude -p`、worktree 隔离等）。
+
+> ⚠️ 这 6 个 skill 只负责**流程**（做什么、产物是什么、谁在关卡上批）。具体手艺交给 DSH 已有的 skill：`test`、`verify`、`webapp-testing`、`review`、`security-review`、`debug`、`plan`、`frontend-design`、`impeccable`。
+
 ## 📁 仓库结构
 
 ```
 startup-kit/
 ├── README.md
 ├── README.zh-CN.md
+├── AI-SDLC-SKILLS.md
 ├── preflight/       ← 12 维诊断
 ├── blueprint/       ← 成功手册
 ├── forge/           ← 想法生成 (v0.5)
 ├── pricing/         ← 定价实验室 (v0.5)
 ├── compass/         ← 指标仪表盘 (v0.5)
-└── gtm/             ← Go-to-market (v0.5)
+├── gtm/             ← Go-to-market (v0.5)
+├── ai-sdlc-plan/    ← SDLC ① 规划
+├── ai-sdlc-design/  ← SDLC ② 设计
+├── ai-sdlc-build/   ← SDLC ③ 构建
+├── ai-sdlc-test/    ← SDLC ④ 测试
+├── ai-sdlc-deploy/  ← SDLC ⑤ 部署
+└── ai-sdlc-maintain/← SDLC ⑥ 维护
 ```
 
 每个技能在同一层级，各自有 SKILL.md、SKILL.zh-CN.md 和 references/。
@@ -116,6 +146,7 @@ startup-kit/
 - **pricing** ✅ — 定价实验室 (v0.5)
 - **compass** ✅ — 指标仪表盘 (v0.5)
 - **gtm** ✅ — Go-to-market 策略手册 (v0.5)
+- **ai-sdlc** ✅ — AI 原生 SDLC 六阶段套件 (v1.0)，使用说明见 [`AI-SDLC-SKILLS.md`](AI-SDLC-SKILLS.md)
 - **raise** (WIP) — 融资套件：Pitch deck 模式、财务模型、投资人 mapping
 
 ## ⚠️ 这不是什么

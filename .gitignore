@@ -1,6 +1,8 @@
 # ─────────────────────────────────────────────────────────────
-# startup-kit 公开技能库：只跟踪 README* 与 6 个 skill 目录
-# （forge/ preflight/ blueprint/ pricing/ compass/ gtm/）
+# startup-kit 公开技能库：跟踪 README* 与下列 skill 目录
+#   创业流程（6）：forge/ preflight/ blueprint/ pricing/ compass/ gtm/
+#   AI 原生 SDLC（6）：ai-sdlc-plan/ -design/ -build/ -test/ -deploy/ -maintain/
+# 加 AI-SDLC-SKILLS.md（SDLC 那 6 个 skill 的使用说明）
 # 其余为本机个人调研内容，一律不进入版本库、不推送公开仓
 # ─────────────────────────────────────────────────────────────
 
@@ -22,10 +24,11 @@ __pycache__/
 # Node
 node_modules/
 
-# ── DSH / CodeWhale 运行时与记忆 ──
+# ── DSH / CodeWhale / WorkBuddy 运行时与记忆 ──
 .codewhale/
 .deepseek/
 .deepseek-harness/
+.workbuddy-ai/
 
 # ── 工作区指令 ──
 /AGENTS.md
@@ -38,6 +41,7 @@ node_modules/
 /config/
 /GitHub/
 /idea-discovery/
+/land-sales/
 /prospect/
 /references/
 /reports/
