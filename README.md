@@ -6,7 +6,7 @@
 
 Six skills that take you from idea to execution, built on systematic analysis of **2,500+ failed startup post-mortems** and **5,000+ successful founder stories**.
 
-A second suite, [**AI-Native SDLC**](#-ai-native-sdlc-kit-skills-712), covers the software delivery process itself — the six stages of Anthropic's AI-Native SDLC playbook, mapped stage by stage onto this harness.
+A companion suite, the [**AI-Native SDLC Kit**](https://github.com/alpha-xone/ai-native-sdlc-kit), covers the software delivery process itself — the six stages of Anthropic's AI-Native SDLC playbook, plus the project skeleton that says where each artifact lives and which layer actually blocks. It lives in its own repository; see [below](#-companion-ai-native-sdlc-kit).
 
 ## 📊 What Makes This Different
 
@@ -72,10 +72,10 @@ A second suite, [**AI-Native SDLC**](#-ai-native-sdlc-kit-skills-712), covers th
 ### How to Use
 
 ```bash
-# Clone the entire kit
+# Clone the kit
 git clone https://github.com/alpha-xone/startup-kit
 
-# Copy the 12 skills into your agent's user-level skill root.
+# Copy the six skills into your agent's user-level skill root.
 # Pick the path that matches your harness:
 #   CodeWhale   ~/.codewhale/skills/
 #   DSH         ~/.dsh/skills/
@@ -83,8 +83,6 @@ git clone https://github.com/alpha-xone/startup-kit
 SKILLS=~/.dsh/skills
 
 cp -r forge preflight blueprint pricing compass gtm "$SKILLS"/
-cp -r ai-sdlc-plan ai-sdlc-design ai-sdlc-build "$SKILLS"/
-cp -r ai-sdlc-test ai-sdlc-deploy ai-sdlc-maintain "$SKILLS"/
 ```
 
 Then ask your agent:
@@ -98,7 +96,7 @@ Then ask your agent:
 
 ### Syncing the whole skill set across machines
 
-This repo ships the 12 skills above. A working agent usually has **more than 12**
+This repo ships the six skills above. A working agent usually has **more than six**
 skills installed — third-party bundles that have no common upstream and cannot be
 reproduced by installing the harness alone.
 
@@ -113,8 +111,10 @@ powershell -ExecutionPolicy Bypass -File _sync\sync.ps1      # updates
 ```
 
 It is private because it contains third-party bundles whose redistribution terms
-this repo does not control. The 12 skills in *this* repo remain the authoritative
-source for their own content — edit them here, then re-copy into the mirror.
+this repo does not control. The six skills in *this* repo remain the authoritative
+source for their own content — edit them here, then re-copy into the mirror. (The
+`ai-sdlc-*` skills have their own authoritative source: the
+[AI-Native SDLC Kit](https://github.com/alpha-xone/ai-native-sdlc-kit).)
 
 ### Report rendering
 
@@ -128,22 +128,26 @@ Reports (HTML) are rendered by delegation, not by a stylesheet hardcoded in this
 
 Install those two skills alongside Startup Kit. Without them, preflight falls back to `scripts/generate-dashboard.py` — structurally complete, but styled with the deprecated palette.
 
-## 🧭 AI-Native SDLC Kit (skills 7–12)
+## 🧭 Companion: AI-Native SDLC Kit
 
-The six skills above cover the **startup** process. These six cover the **software delivery** process: the six stages of Anthropic's [The AI-Native SDLC playbook](https://claude.com/blog/the-ai-native-sdlc-playbook), turned into invocable skills — with every harness mechanism **mapped to its DeepSeek Harness equivalent, or explicitly marked as having none**.
+The six skills above cover the **startup** process. The **software delivery** process — the six stages of Anthropic's [The AI-Native SDLC playbook](https://claude.com/blog/the-ai-native-sdlc-playbook), turned into invocable skills plus a project skeleton — lives in its own repository:
+
+> **[github.com/alpha-xone/ai-native-sdlc-kit](https://github.com/alpha-xone/ai-native-sdlc-kit)**
 
 | Stage | Skill | The play |
 |---|---|---|
-| ① Plan | [`ai-sdlc-plan/`](ai-sdlc-plan) | Produce `intent.md` in the originator's own words; product owner accepts or closes |
-| ② Design | [`ai-sdlc-design/`](ai-sdlc-design) | Requirements and design in one session; policy applied as constraint; contradictions flagged |
-| ③ Build | [`ai-sdlc-build/`](ai-sdlc-build) | Nothing implemented without an approved `plan.md`; knowledge in `AGENTS.md` and skills |
-| ④ Test | [`ai-sdlc-test/`](ai-sdlc-test) | A feedback loop the agent runs itself; the agent's own config gets regression-tested |
-| ⑤ Deploy | [`ai-sdlc-deploy/`](ai-sdlc-deploy) | AI reviews both directions; gates enforced as policy; the agent cannot pass the production gate |
-| ⑥ Maintain | [`ai-sdlc-maintain/`](ai-sdlc-maintain) | Deterministic detector + control bands; a breach returns as a new `intent.md` |
+| ① Plan | `ai-sdlc-plan` | Produce `intent.md` in the originator's own words; product owner accepts or closes |
+| ② Design | `ai-sdlc-design` | Requirements and design in one session; policy applied as constraint; contradictions flagged |
+| ③ Build | `ai-sdlc-build` | Nothing implemented without an approved `plan.md` |
+| ④ Test | `ai-sdlc-test` | A feedback loop the agent runs itself |
+| ⑤ Deploy | `ai-sdlc-deploy` | AI reviews both directions; the agent cannot pass the production gate |
+| ⑥ Maintain | `ai-sdlc-maintain` | Deterministic detector + control bands; a breach returns as a new `intent.md` |
 
-**Start here**: [`AI-SDLC-SKILLS.md`](AI-SDLC-SKILLS.md) — role→skill mapping, adoption order, a full worked example, and a dedicated section on **which controls do not exist in DSH** (network egress allowlists, per-path secret denies, a managed-settings tier, `claude -p`, worktree isolation).
+That repo also carries the **repository side**: `SDLC.md` (artifact → path binding, gate owners), `ENFORCEMENT.md` (enforced / advisory / missing), six policy-skill skeletons, a project template with a `venture/` handoff, and `factory/scripts/New-Project.ps1` — a generator that scaffolds a project self-contained, with its governance docs committed alongside it.
 
-> ⚠️ These six skills own **process** (what happens, what artifact it leaves, who approves at the gate). Craft belongs to the harness's existing skills: `test`, `verify`, `webapp-testing`, `review`, `security-review`, `debug`, `plan`, `frontend-design`, `impeccable`.
+**Why it is separate**: it distills Anthropic's playbook; this repo distills founder case data (StarterStory / IndieHackers / YC / MicroConf). Different sources, different licensing to reason about, different release cadence — one repository would have forced one licence to cover both.
+
+The two halves meet at stage 0: run `forge` → `preflight` → `blueprint` here, then land the result in a generated project's `venture/`, where it constrains every subsequent spec.
 
 ## 📁 Repository Structure
 
@@ -151,19 +155,14 @@ The six skills above cover the **startup** process. These six cover the **softwa
 startup-kit/
 ├── README.md
 ├── README.zh-CN.md
-├── AI-SDLC-SKILLS.md
+├── LICENSE
+├── NOTICE
 ├── forge/            ← ① Find problems
 ├── preflight/        ← ② Diagnose risks
 ├── blueprint/        ← ③ Prescribe moves
 ├── pricing/          ← ④ Set pricing
 ├── compass/          ← ⑤ Track metrics
-├── gtm/              ← ⑥ Go to market
-├── ai-sdlc-plan/     ← SDLC ① Plan
-├── ai-sdlc-design/   ← SDLC ② Design
-├── ai-sdlc-build/    ← SDLC ③ Build
-├── ai-sdlc-test/     ← SDLC ④ Test
-├── ai-sdlc-deploy/   ← SDLC ⑤ Deploy
-└── ai-sdlc-maintain/ ← SDLC ⑥ Maintain
+└── gtm/              ← ⑥ Go to market
 ```
 
 Every skill at the same level. Each has its own SKILL.md, SKILL.zh-CN.md, and references/.
@@ -176,7 +175,7 @@ Every skill at the same level. Each has its own SKILL.md, SKILL.zh-CN.md, and re
 - **pricing** ✅ — Pricing lab (v0.5)
 - **compass** ✅ — KPI dashboard (v0.5)
 - **gtm** ✅ — Go-to-market playbook (v0.5)
-- **ai-sdlc** ✅ — AI-native SDLC six-stage kit (v1.0); usage guide at [`AI-SDLC-SKILLS.md`](AI-SDLC-SKILLS.md)
+- **ai-sdlc** ✅ — moved to [its own repository](https://github.com/alpha-xone/ai-native-sdlc-kit) (v1.0)
 - **raise** (WIP) — Fundraising suite: pitch deck patterns, financial modeling, investor mapping
 
 ## ⚠️ What This Is NOT
@@ -186,6 +185,10 @@ Every skill at the same level. Each has its own SKILL.md, SKILL.zh-CN.md, and re
 - **Not VC-only** — patterns are tagged by founder type (bootstrapped vs VC, solo vs co-founder)
 - **Not survivorship bias unacknowledged** — each skill documents limitations in its `references/data-sources.md`
 - **Not the final word** — the decision is yours. These tools just ensure it's an evidence-backed one
+
+## License
+
+MIT — see [`LICENSE`](LICENSE). These skills distill publicly available case data and published frameworks; [`NOTICE`](NOTICE) records those sources and states what the licence does and does not cover.
 
 ---
 

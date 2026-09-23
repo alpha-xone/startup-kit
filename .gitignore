@@ -1,10 +1,22 @@
 # ─────────────────────────────────────────────────────────────
-# startup-kit 公开技能库：跟踪 README* 与下列 skill 目录
+# startup-kit 公开技能库：跟踪 README*、LICENSE、NOTICE 与下列 skill 目录
 #   创业流程（6）：forge/ preflight/ blueprint/ pricing/ compass/ gtm/
-#   AI 原生 SDLC（6）：ai-sdlc-plan/ -design/ -build/ -test/ -deploy/ -maintain/
-# 加 AI-SDLC-SKILLS.md（SDLC 那 6 个 skill 的使用说明）
 # 其余为本机个人调研内容，一律不进入版本库、不推送公开仓
+#
+# AI 原生 SDLC 那 6 个 skill（ai-sdlc-*）与 AI-SDLC-SKILLS.md 已迁到独立仓：
+#   https://github.com/alpha-xone/ai-native-sdlc-kit
+# 下面把它们列入忽略，是为了防止本地残留副本被误提交 ——
+# 两处副本必然漂移，权威来源只能有一个。
 # ─────────────────────────────────────────────────────────────
+
+# ── 已迁出的 SDLC 半（权威来源在 ai-native-sdlc-kit 仓）──
+/AI-SDLC-SKILLS.md
+/ai-sdlc-plan/
+/ai-sdlc-design/
+/ai-sdlc-build/
+/ai-sdlc-test/
+/ai-sdlc-deploy/
+/ai-sdlc-maintain/
 
 # Personal / non-skill files（原有条目）
 Box/

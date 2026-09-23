@@ -6,7 +6,7 @@
 
 六个技能帮你从想法到执行，基于 **2,500+ 失败创业尸检报告** 和 **5,000+ 成功创始人故事** 的系统分析。
 
-另有一套 [**AI 原生 SDLC**](#-ai-原生-sdlc-套件第-712-个-skill) 覆盖软件研发流程本身——把 Anthropic 的 AI 原生 SDLC playbook 六个阶段逐阶段映射到本机 harness。
+另有一套 [**AI 原生 SDLC 套件**](https://github.com/alpha-xone/ai-native-sdlc-kit) 覆盖软件研发流程本身——把 Anthropic 的 AI 原生 SDLC playbook 六个阶段做成可调用的 skill，并给出项目骨架：制品放哪、谁签字、哪一层真的在拦。它已独立成仓，见[下文](#-配套ai-原生-sdlc-套件)。
 
 ## 📊 有什么不同
 
@@ -63,20 +63,16 @@
 ### 使用方法
 
 ```bash
-# 克隆整个工具包
+# 克隆工具包
 git clone https://github.com/alpha-xone/startup-kit
 
-# 或者将单个 skill 复制到你的 CodeWhale skills 目录
-cp -r preflight ~/.codewhale/skills/
-cp -r blueprint ~/.codewhale/skills/
-cp -r forge ~/.codewhale/skills/
-cp -r pricing ~/.codewhale/skills/
-cp -r compass ~/.codewhale/skills/
-cp -r gtm ~/.codewhale/skills/
+# 把六个 skill 复制到你的 harness 用户级 skill 目录
+#   CodeWhale   ~/.codewhale/skills/
+#   DSH         ~/.dsh/skills/
+#   WorkBuddy   ~/.workbuddy-ai/skills/
+SKILLS=~/.dsh/skills
 
-# AI 原生 SDLC 套件（6 个阶段）
-cp -r ai-sdlc-plan ai-sdlc-design ai-sdlc-build ~/.codewhale/skills/
-cp -r ai-sdlc-test ai-sdlc-deploy ai-sdlc-maintain ~/.codewhale/skills/
+cp -r forge preflight blueprint pricing compass gtm "$SKILLS"/
 ```
 
 然后告诉你的 agent：
@@ -100,22 +96,26 @@ cp -r ai-sdlc-test ai-sdlc-deploy ai-sdlc-maintain ~/.codewhale/skills/
 
 请把这两个 skill 和 Startup Kit 一起装上。没装的话，preflight 会退回 `scripts/generate-dashboard.py`——结构完整，但用的是已废弃的旧配色。
 
-## 🧭 AI 原生 SDLC 套件（第 7–12 个 skill）
+## 🧭 配套：AI 原生 SDLC 套件
 
-上面 6 个 skill 管**创业流程**（从想法到市场）。这 6 个管**软件研发流程**——把 Anthropic《[The AI-Native SDLC playbook](https://claude.com/blog/the-ai-native-sdlc-playbook)》里的 6 个阶段做成可调用的 skill，并且**逐条标注了 DeepSeek Harness 的等价物或「无等价物」**。
+上面 6 个 skill 管**创业流程**。管**软件研发流程**的那一套——把 Anthropic《[The AI-Native SDLC playbook](https://claude.com/blog/the-ai-native-sdlc-playbook)》的 6 个阶段做成可调用的 skill，外加项目骨架——已独立成仓：
+
+> **[github.com/alpha-xone/ai-native-sdlc-kit](https://github.com/alpha-xone/ai-native-sdlc-kit)**
 
 | 阶段 | Skill | 核心玩法 |
 |---|---|---|
-| ① Plan | [`ai-sdlc-plan/`](ai-sdlc-plan) | 用提出者自己的话产出 `intent.md`，由产品负责人放行 |
-| ② Design | [`ai-sdlc-design/`](ai-sdlc-design) | 一次会话走完需求与设计，政策作为约束应用，冲突必须标出 |
-| ③ Build | [`ai-sdlc-build/`](ai-sdlc-build) | 没有已批准的 `plan.md` 不动手；组织知识进 `AGENTS.md` 与 skill |
-| ④ Test | [`ai-sdlc-test/`](ai-sdlc-test) | 给 agent 一条它自己能跑的反馈回路；agent 配置也要做回归测试 |
-| ⑤ Deploy | [`ai-sdlc-deploy/`](ai-sdlc-deploy) | AI 双向评审；人工闸门以确定性策略执行，agent 过不去生产闸门 |
-| ⑥ Maintain | [`ai-sdlc-maintain/`](ai-sdlc-maintain) | 确定性检测器 + 控制带，突破后以新的 `intent.md` 回到 Plan |
+| ① Plan | `ai-sdlc-plan` | 用提出者自己的话产出 `intent.md`，由产品负责人放行 |
+| ② Design | `ai-sdlc-design` | 一次会话走完需求与设计，政策作为约束应用，冲突必须标出 |
+| ③ Build | `ai-sdlc-build` | 没有已批准的 `plan.md` 不动手 |
+| ④ Test | `ai-sdlc-test` | 给 agent 一条它自己能跑的反馈回路 |
+| ⑤ Deploy | `ai-sdlc-deploy` | AI 双向评审；agent 过不去生产闸门 |
+| ⑥ Maintain | `ai-sdlc-maintain` | 确定性检测器 + 控制带，突破后以新的 `intent.md` 回到 Plan |
 
-**怎么开始**：读 [`AI-SDLC-SKILLS.md`](AI-SDLC-SKILLS.md)——含角色→skill 对照表、引入顺序、一次完整走查，以及一节专门讲**哪些管控在 DSH 里并不存在**（网络白名单、按路径密钥拒绝、托管设置层、`claude -p`、worktree 隔离等）。
+kit 仓还带**仓库侧**那一半：`SDLC.md`（制品→路径绑定、闸门所有者）、`ENFORCEMENT.md`（被强制 / 建议性 / 缺失）、六份政策 skill 骨架、含 `venture/` 交接的项目模板，以及 `factory/scripts/New-Project.ps1`——一个把项目连同治理文档一起自包含生成出来的生成器。
 
-> ⚠️ 这 6 个 skill 只负责**流程**（做什么、产物是什么、谁在关卡上批）。具体手艺交给 DSH 已有的 skill：`test`、`verify`、`webapp-testing`、`review`、`security-review`、`debug`、`plan`、`frontend-design`、`impeccable`。
+**为什么拆开**：它蒸馏的是 Anthropic 的 playbook，本仓蒸馏的是创始人案例数据（StarterStory / IndieHackers / YC / MicroConf）。来源不同、许可要分别处理、发布节奏也不同——合在一仓会逼着一份许可证同时覆盖两者。
+
+本仓的 `forge` → `preflight` → `blueprint` 正好喂给它的第 0 阶段：`preflight` 与 `blueprint` 的结论落在项目的 `venture/`，之后约束每一份 spec。
 
 ## 📁 仓库结构
 
@@ -123,19 +123,14 @@ cp -r ai-sdlc-test ai-sdlc-deploy ai-sdlc-maintain ~/.codewhale/skills/
 startup-kit/
 ├── README.md
 ├── README.zh-CN.md
-├── AI-SDLC-SKILLS.md
+├── LICENSE
+├── NOTICE
 ├── preflight/       ← 12 维诊断
 ├── blueprint/       ← 成功手册
 ├── forge/           ← 想法生成 (v0.5)
 ├── pricing/         ← 定价实验室 (v0.5)
 ├── compass/         ← 指标仪表盘 (v0.5)
-├── gtm/             ← Go-to-market (v0.5)
-├── ai-sdlc-plan/    ← SDLC ① 规划
-├── ai-sdlc-design/  ← SDLC ② 设计
-├── ai-sdlc-build/   ← SDLC ③ 构建
-├── ai-sdlc-test/    ← SDLC ④ 测试
-├── ai-sdlc-deploy/  ← SDLC ⑤ 部署
-└── ai-sdlc-maintain/← SDLC ⑥ 维护
+└── gtm/             ← Go-to-market (v0.5)
 ```
 
 每个技能在同一层级，各自有 SKILL.md、SKILL.zh-CN.md 和 references/。
@@ -146,7 +141,7 @@ startup-kit/
 - **pricing** ✅ — 定价实验室 (v0.5)
 - **compass** ✅ — 指标仪表盘 (v0.5)
 - **gtm** ✅ — Go-to-market 策略手册 (v0.5)
-- **ai-sdlc** ✅ — AI 原生 SDLC 六阶段套件 (v1.0)，使用说明见 [`AI-SDLC-SKILLS.md`](AI-SDLC-SKILLS.md)
+- **ai-sdlc** ✅ — 已独立成仓：[alpha-xone/ai-native-sdlc-kit](https://github.com/alpha-xone/ai-native-sdlc-kit) (v1.0)
 - **raise** (WIP) — 融资套件：Pitch deck 模式、财务模型、投资人 mapping
 
 ## ⚠️ 这不是什么
@@ -156,6 +151,10 @@ startup-kit/
 - **不只是 VC 的** — 模式按创始人类型标记（自举 vs VC、独立 vs 联合创始人）
 - **不隐瞒幸存者偏差** — 每个技能在各自的 `references/data-sources.md` 中记录了方法论局限性
 - **不是最终结论** — 决策权在你。这些工具只是确保你基于证据做决定
+
+## 许可
+
+MIT，见 [`LICENSE`](LICENSE)。这些 skill 蒸馏自公开可得的案例数据与已发表的框架；[`NOTICE`](NOTICE) 记录了那些来源，并说明本许可证覆盖与不覆盖的范围。
 
 ---
 

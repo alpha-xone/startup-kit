@@ -1,0 +1,81 @@
+Startup Kit — Third-Party Notices
+=================================
+
+This file records third-party sources this project draws on, and the limits of
+what the MIT license in LICENSE actually covers.
+
+
+1. Case data and published frameworks
+--------------------------------------
+
+The six skills (`forge`, `preflight`, `blueprint`, `pricing`, `compass`, `gtm`)
+extract patterns from publicly available founder case data and published
+frameworks. None of that source material is redistributed here — the skills
+contain derived patterns, benchmarks, and worked examples written in this
+project's own words.
+
+Case data and post-mortem collections referenced:
+
+    StarterStory          founder interviews
+    IndieHackers          founder interviews and revenue reports
+    Y Combinator          Startup School material
+    MicroConf             bootstrapper talks
+    CB Insights           startup post-mortem analyses
+    LOOTR                 startup failure heatmap
+    Killed by Google      discontinued product index
+
+Published frameworks referenced:
+
+    Helmer's 7 Powers               moat taxonomy
+    The Mom Test (Rob Fitzpatrick)  customer-conversation method
+    Hormozi Value Equation          pricing value framing
+    Western Electric rules          control-chart rules
+
+These names identify sources. They are used descriptively. No affiliation,
+sponsorship, or endorsement by any of the above is implied, and the MIT license
+in LICENSE grants no rights to any third-party work.
+
+Individual figures quoted in the skills (revenue numbers, failure rates,
+conversion benchmarks) are attributed inline to their source. Where a figure
+came from a single source it is marked as not cross-verified. Each skill
+records its own sourcing in `references/data-sources.md`.
+
+
+2. Limits of the derived claims
+--------------------------------
+
+The skills are pattern extraction from historical outcomes. Two consequences
+are worth stating plainly:
+
+- **Survivorship bias is real.** Success patterns come from founders who chose
+  to publish their numbers — a self-selected group. Each skill documents this
+  in its `references/data-sources.md`.
+- **Case data ages.** A benchmark captured at one time does not hold forever.
+  Where the collection date is known, the skills state it.
+
+Nothing in this repository is financial, legal, or investment advice.
+
+
+3. Named products and standards
+--------------------------------
+
+The skills reference third-party tools and skills by name in order to be
+concrete about where responsibility sits — for example DeepSeek Harness,
+WorkBuddy, CodeWhale, Claude Code, and the companion skills `impeccable` and
+`diagram-design`. These references are descriptive and imply no affiliation,
+sponsorship, or endorsement. No third-party code is vendored in this
+repository.
+
+
+4. Companion repository
+-----------------------
+
+The `ai-sdlc-*` skills, the `AI-SDLC-SKILLS.md` usage guide, and the project
+scaffold that used to live here have moved to:
+
+    AI-Native SDLC Kit
+    https://github.com/alpha-xone/ai-native-sdlc-kit
+
+That repository distills Anthropic's "The AI-Native SDLC playbook" and carries
+its own LICENSE and NOTICE. Its contents are not covered by this repository's
+license, and vice versa.
