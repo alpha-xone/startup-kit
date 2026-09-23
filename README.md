@@ -75,17 +75,16 @@ A second suite, [**AI-Native SDLC**](#-ai-native-sdlc-kit-skills-712), covers th
 # Clone the entire kit
 git clone https://github.com/alpha-xone/startup-kit
 
-# Or copy individual skills to your CodeWhale skills directory
-cp -r forge ~/.codewhale/skills/
-cp -r preflight ~/.codewhale/skills/
-cp -r blueprint ~/.codewhale/skills/
-cp -r pricing ~/.codewhale/skills/
-cp -r compass ~/.codewhale/skills/
-cp -r gtm ~/.codewhale/skills/
+# Copy the 12 skills into your agent's user-level skill root.
+# Pick the path that matches your harness:
+#   CodeWhale   ~/.codewhale/skills/
+#   DSH         ~/.dsh/skills/
+#   WorkBuddy   ~/.workbuddy-ai/skills/
+SKILLS=~/.dsh/skills
 
-# AI-Native SDLC kit (six stages)
-cp -r ai-sdlc-plan ai-sdlc-design ai-sdlc-build ~/.codewhale/skills/
-cp -r ai-sdlc-test ai-sdlc-deploy ai-sdlc-maintain ~/.codewhale/skills/
+cp -r forge preflight blueprint pricing compass gtm "$SKILLS"/
+cp -r ai-sdlc-plan ai-sdlc-design ai-sdlc-build "$SKILLS"/
+cp -r ai-sdlc-test ai-sdlc-deploy ai-sdlc-maintain "$SKILLS"/
 ```
 
 Then ask your agent:
@@ -96,6 +95,26 @@ Then ask your agent:
 > **"How should I price my product?"** → Pricing analysis
 > **"What metrics should I track?"** → Compass dashboard
 > **"Which GTM channel for my stage?"** → Channel match analysis
+
+### Syncing the whole skill set across machines
+
+This repo ships the 12 skills above. A working agent usually has **more than 12**
+skills installed — third-party bundles that have no common upstream and cannot be
+reproduced by installing the harness alone.
+
+Those are mirrored separately in the **private** repo `alpha-xone/dsh-skills`,
+whose root *is* the DSH skill root. On a new machine:
+
+```powershell
+git clone https://github.com/alpha-xone/dsh-skills.git
+cd dsh-skills
+powershell -ExecutionPolicy Bypass -File _sync\install.ps1   # first time
+powershell -ExecutionPolicy Bypass -File _sync\sync.ps1      # updates
+```
+
+It is private because it contains third-party bundles whose redistribution terms
+this repo does not control. The 12 skills in *this* repo remain the authoritative
+source for their own content — edit them here, then re-copy into the mirror.
 
 ### Report rendering
 
