@@ -62,7 +62,7 @@ A companion suite, the [**AI-Native SDLC Kit**](https://github.com/alpha-xone/ai
 
 | # | Directory | Description | Data Backing |
 |---|---|---|---|
-| 1 | [`forge/`](forge) | Idea generation: pain mining, quick filtering, opportunity discovery (v0.5) | Preflight G0 methodology + 16-industry failure profiles |
+| 1 | [`forge/`](forge) | Idea generation: pain mining, quick filtering, opportunity discovery (v0.6) | Preflight G0 methodology + 16-industry failure profiles + adaptive web-research tiers |
 | 2 | [`preflight/`](preflight) | 12-dimension startup health check: demand, competition, unit economics, runway, team, etc. | 1,749 failed startups ($535B burned) · CB Insights (483 post-mortems) · LOOTR heatmap · Killed by Google (307 products) |
 | 3 | [`blueprint/`](blueprint) | Success playbook: 7 frameworks, 5 revenue stages, 6 business model playbooks, 8 founder moves | StarterStory (1,000+ interviews) · IndieHackers (5,000+ founders) · YC Startup School · MicroConf |
 | 4 | [`pricing/`](pricing) | Pricing lab: value-based pricing, tier design, price raise audits, 12+ real cases (v0.5) | Hormozi Value Equation + StarterStory + IndieHackers pricing outcomes |
@@ -169,7 +169,7 @@ Every skill at the same level. Each has its own SKILL.md, SKILL.zh-CN.md, and re
 
 ## 🔮 Roadmap
 
-- **forge** ✅ — Idea generation engine (v0.5)
+- **forge** ✅ — Idea generation engine (v0.6)
 - **preflight** ✅ — 12-dimension diagnostic
 - **blueprint** ✅ — Success playbook
 - **pricing** ✅ — Pricing lab (v0.5)

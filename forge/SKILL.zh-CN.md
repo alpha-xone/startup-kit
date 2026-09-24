@@ -1,13 +1,13 @@
 ---
 name: forge
-description: "Forge — 想法生成引擎。帮创始人在写代码之前发现真实痛点。preflight 的 G0 前置工具。触发词：'找创业想法'、'做什么项目'、'发现机会'、'头脑风暴'、'想法生成'。输出结构化机会报告。v0.5。"
+description: "Forge — 想法生成引擎。帮创始人在写代码之前发现真实痛点。preflight 的 G0 前置工具。触发词：'找创业想法'、'做什么项目'、'发现机会'、'头脑风暴'、'想法生成'。输出结构化机会报告。会按运行时可用的检索能力自适应（原生联网工具 / OpenCLI / 浏览器自动化 / 人工介入）。v0.6。"
 ---
 
 # Forge · 想法生成引擎
 
 > **在写一行代码之前，找到真正的问题。**
 
-Forge 是 preflight 的 G0 前置工具。Preflight 问「这个想法行不行」，Forge 问「什值得做」——在你还没想法的时候。
+Forge 是 preflight 的 G0 前置工具。Preflight 问「这个想法行不行」，Forge 问「什么值得做」——在你还没想法的时候。
 
 ## 核心理念
 
@@ -21,17 +21,32 @@ Forge 是 preflight 的 G0 前置工具。Preflight 问「这个想法行不行�
 
 ## Forge 框架
 
-### 第一步：选择来源
+### 第一步：能力探测
+
+开始挖掘之前，先确认**这台机器**上哪些联网手段可用。**不要假设某个 Tier 存在。**
+
+| Tier | 机制 | 怎么探测 |
+|---|---|---|
+| **A** | 原生联网工具 —— WebSearch / WebFetch 或宿主运行时的等价物 | 发一条必然有结果的检索 |
+| **B** | **OpenCLI** —— 把网站变成 CLI，复用你已登录的 Chrome 会话 | `opencli doctor`（退出码 0 = 就绪）· `opencli list` · `curl -s localhost:19825/status` |
+| **C** | 通用浏览器自动化 —— Playwright / agent-browser / chrome-devtools 类 MCP | 打开一个已知站点并取回 DOM |
+| **D** | 人工介入 —— 用户粘贴原帖、截图、导出文件 | 直接问用户 |
+
+Tier A 万能，但在登录墙后与反爬站点前是瞎的。Tier B 正是穿过它们的那个，且给结构化输出。**探测结果要写进报告的「检索能力与盲区」段。**
+
+**渠道 × Tier 路由表、OpenCLI 命令清单、退出码与降级规则见 [`references/web-research-capabilities.md`](references/web-research-capabilities.md)。**
+
+### 第二步：选择来源
 
 选一个或组合：
 
 - **个人痛点** — 你最近被什么烦到了？什么手工流程你在重复做？
-- **行业空白** — Preflight 的 16 行业数据告诉你哪里死得最多→反向就是机会
-- **抱怨挖掘** — Reddit、应用商店评论、客服论坛。找「要是有个工具能……就好了」
+- **行业空白** — Preflight 的 16 行业数据告诉你哪里死得最多 → 反向就是机会
+- **抱怨挖掘** — Reddit、X、应用商店评论、客服论坛、小红书 / 知乎 / V2EX。找「要是有个工具能……就好了」——**这是唯一依赖联网的来源，按第一步的 Tier 路由它**
 - **工作流观察** — 观察别人工作。什么太慢？什么需要绕路？
 - **组合拳** — 一次做多个小东西。总有一个会发芽（Marc Lou 一年 17 个产品法）
 
-### 第二步：快速过滤
+### 第三步：快速过滤
 
 每个候选想法打 0-2 分：
 
@@ -47,7 +62,7 @@ Forge 是 preflight 的 G0 前置工具。Preflight 问「这个想法行不行�
 **3-5 分**：有意思但需更多验证 → 15 次 Mom Test 对话
 **<3 分**：还不够 → 继续挖掘
 
-### 第三步：输出
+### 第四步：输出
 
 ```
 ## 🔨 Forge：机会报告
@@ -55,11 +70,15 @@ Forge 是 preflight 的 G0 前置工具。Preflight 问「这个想法行不行�
 ### 领域：[用户输入的领域]
 
 ### 发现的痛点
-1. [痛点] — 证据: [来源] — 得分: [X/10]
-2. [痛点] — 证据: [来源] — 得分: [X/10]
+1. [痛点] — 证据: [链接] — 采集方式: [Tier] — 采集日期: [日期] — 得分: [X/10]
+2. [痛点] — 证据: [链接] — 采集方式: [Tier] — 采集日期: [日期] — 得分: [X/10]
 
 ### 最佳机会
 [最高分想法 + 原因]
+
+### 检索能力与盲区
+[可用的 Tier。已尝试但不可达的渠道，以及原因。
+真相是「够不到」时，绝不写成「没有需求」。]
 
 ### 下一步
 [进入 preflight G1 / 更多 Mom Test / 继续挖掘]
@@ -76,9 +95,19 @@ Forge 是 preflight 的 G0 前置工具。Preflight 问「这个想法行不行�
 - 每一张图 → 调 **`diagram-design`** skill，**默认 light 模板**（`assets/template.html`）。
 - 产出单文件、自包含的 light 模式 HTML。不要自己写配色或图表。
 
+## 参考文件
+
+| 文件 | 用途 |
+|---|---|
+| [`references/web-research-capabilities.md`](references/web-research-capabilities.md) | 联网能力分层、能力探测、渠道路由、降级规则 |
+| [`../preflight/references/discover.md`](../preflight/references/discover.md) | 渠道地图 + 跨平台搜索句式（归 preflight 所有） |
+| [`../preflight/references/industry-profiles.md`](../preflight/references/industry-profiles.md) | 16 行业失败数据 —— 反向就是机会所在 |
+
 ## 输出规则
 
 - **痛点为先**：没有真实痛苦证据就没有「好点子」
 - **人，不是市场**：「5 个有确切痛苦的人」>「这是个 X 亿的市场」
 - **诚实打分**：低分 = 继续挖，不是「说服自己」
+- **声明盲区**：「该渠道不可达」≠「需求不存在」。写清你有哪些 Tier、够不到什么
+- **给每个结论标日期**：「这是空位」的有效期按周计，不是按季
 - **配合 preflight**：Forge 的输出喂给 preflight G1，不要重复 G1 的深度

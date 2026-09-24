@@ -127,7 +127,7 @@ startup-kit/
 ├── NOTICE
 ├── preflight/       ← 12 维诊断
 ├── blueprint/       ← 成功手册
-├── forge/           ← 想法生成 (v0.5)
+├── forge/           ← 想法生成 (v0.6)
 ├── pricing/         ← 定价实验室 (v0.5)
 ├── compass/         ← 指标仪表盘 (v0.5)
 └── gtm/             ← Go-to-market (v0.5)
@@ -137,7 +137,7 @@ startup-kit/
 
 ## 🔮 路线图
 
-- **forge** ✅ — 想法生成引擎 (v0.5)
+- **forge** ✅ — 想法生成引擎 (v0.6)
 - **pricing** ✅ — 定价实验室 (v0.5)
 - **compass** ✅ — 指标仪表盘 (v0.5)
 - **gtm** ✅ — Go-to-market 策略手册 (v0.5)
